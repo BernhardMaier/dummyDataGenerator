@@ -9,6 +9,7 @@ namespace DummyDataGeneratorConsole
         static void Main(string[] args)
         {
             var path = Path.Combine(Directory.GetCurrentDirectory(), "dummydata.sql");
+            Console.WriteLine($"Script saved at '{path}'");
             
             Console.WriteLine("Please enter a seed number (integer):");
             var inputSeed = Console.ReadLine();
@@ -35,8 +36,8 @@ namespace DummyDataGeneratorConsole
             var vehicles = Vehicle.CreateMany(vehicleCount, ddg).ToList();
             var connections = Connection.CreateMany(connectionCount, customers, vehicles, ddg).ToList();
 
-            var script = SqlHandler.CreateScript(customers, vehicles, connections);
-            SqlHandler.SaveScript(path, script);
+            var content = SqlHandler.CreateScript(customers, vehicles, connections);
+            SqlHandler.SaveScript(path, content);
             
             Console.WriteLine($"Script can be found at '{path}'");
         }

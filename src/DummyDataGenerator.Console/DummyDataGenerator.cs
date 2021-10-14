@@ -15,92 +15,102 @@ namespace DummyDataGeneratorConsole
 
         public Guid GenerateRandomGuid()
         {
-            throw new NotImplementedException();
+            return new Guid(_random.Next().ToString());
         }
 
         public int GenerateRandomGender()
         {
-            throw new NotImplementedException();
+            return _random.Next() % 3;
         }
 
         public string GenerateRandomDesignation()
         {
-            throw new NotImplementedException();
+            var values = new[] { null, "Dr.", "Prof." };
+            return values[_random.Next() % 3];
         }
 
         public string GenerateRandomFirstName()
         {
-            throw new NotImplementedException();
+            var values = new[] { "Ben", "Peter", "Jens" };
+            return values[_random.Next() % 3];
         }
 
         public string GenerateRandomLastName()
         {
-            throw new NotImplementedException();
+            var values = new[] { "Müller", "Maier", "Schuster" };
+            return values[_random.Next() % 3];
         }
 
         public string GenerateRandomStreet()
         {
-            throw new NotImplementedException();
+            var values = new[] { "Hauptstr.", "Mühlweg", "Am Graben" };
+            return values[_random.Next() % 3];
         }
 
         public string GenerateRandomHouseNumber()
         {
-            throw new NotImplementedException();
+            return (_random.Next() % 100).ToString();
         }
 
         public string GenerateRandomZipCode()
         {
-            throw new NotImplementedException();
+            return $"{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}";
         }
 
         public string GenerateRandomCity()
         {
-            throw new NotImplementedException();
+            var values = new[] { "Stuttgart", "Holzgerlingen", "Calw" };
+            return values[_random.Next() % 3];
         }
 
         public string GenerateRandomPhone()
         {
-            throw new NotImplementedException();
+            return $"{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}";
         }
 
         public string GenerateRandomEmail(string name = null)
         {
-            throw new NotImplementedException();
+            var values = new[] { "de", "com", "net" };
+            return $"{name}@xyz.{values[_random.Next() % 3]}";
         }
 
         public string GenerateRandomManufacturer()
         {
-            throw new NotImplementedException();
+            var values = new[] { "Mercedes", "VW", "Opel" };
+            return values[_random.Next() % 3];
         }
 
         public string GenerateRandomModel()
         {
-            throw new NotImplementedException();
+            var values = new[] { "E-Klasse", "Passat", "Insignia" };
+            return values[_random.Next() % 3];
         }
 
         public string GenerateRandomLicensePlate()
         {
-            throw new NotImplementedException();
+            var values1 = new[] { "S", "BB", "CW" };
+            var values2 = new[] { "AM", "XX", "SB" };
+            return $"{values1[_random.Next() % 3]}-{values2[_random.Next() % 3]} {(_random.Next() % 9999)+1}";
         }
 
         public string GenerateRandomVin()
         {
-            throw new NotImplementedException();
+            return "sample-vin";
         }
 
         public string GenerateRandomHsn()
         {
-            throw new NotImplementedException();
+            return "sample-hsn";
         }
 
         public string GenerateRandomTsn()
         {
-            throw new NotImplementedException();
+            return "sample-tsn";
         }
 
         public int GenerateRandomMileage()
         {
-            throw new NotImplementedException();
+            return _random.Next();
         }
     }
 }
