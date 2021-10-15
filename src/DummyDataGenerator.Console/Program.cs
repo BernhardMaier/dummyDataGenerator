@@ -9,7 +9,7 @@ namespace DummyDataGeneratorConsole
         static void Main(string[] args)
         {
             var path = Path.Combine(Directory.GetCurrentDirectory(), "dummydata.sql");
-            Console.WriteLine($"Script saved at '{path}'");
+            Console.WriteLine($"Script will be saved at '{path}'");
             
             Console.WriteLine("Please enter a seed number (integer):");
             var inputSeed = Console.ReadLine();

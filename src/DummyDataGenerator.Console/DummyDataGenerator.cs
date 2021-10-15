@@ -2,7 +2,7 @@
 
 namespace DummyDataGeneratorConsole
 {
-    public class DummyDataGenerator : IDummyDataGenerator
+    public partial class DummyDataGenerator : IDummyDataGenerator
     {
         private readonly Random _random;
         public int Seed { get; }
@@ -13,104 +13,37 @@ namespace DummyDataGeneratorConsole
             _random = new Random(Seed);
         }
 
-        public Guid GenerateRandomGuid()
-        {
-            return new Guid(_random.Next().ToString());
-        }
+        public Guid GenerateRandomGuid() => Guid.NewGuid();
+        public int GenerateRandomGender() => RndInt(2);
+        public string GenerateRandomDesignation() => RndElement(Designations);
+        public string GenerateRandomFirstName() => RndElement(FirstNames);
+        public string GenerateRandomLastName() => RndElement(LastNames);
+        public string GenerateRandomStreet() => RndElement(Streets);
+        public string GenerateRandomHouseNumber() => RndInt(100).ToString();
+        public string GenerateRandomZipCode() => $"{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
+        public string GenerateRandomCity() => RndElement(Cities);
+        public string GenerateRandomPhone() => $"{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
+        public string GenerateRandomEmail(string name = null) => $"{name}@{RndString(RndInt(3,5)).ToLower()}.{RndElement(TopLevelDomains)}";
+        public string GenerateRandomManufacturer() => RndElement(Manufacturers);
+        public string GenerateRandomModel() => RndElement(Models);
+        public string GenerateRandomLicensePlate() => $"{RndString(RndInt(1,3))}-{RndString(RndInt(1,2))} {RndInt(9999)}";
+        public string GenerateRandomVin() => "sample-vin";
+        public string GenerateRandomHsn() => "sample-hsn";
+        public string GenerateRandomTsn() => "sample-tsn";
+        public int GenerateRandomMileage() => RndInt(10000000);
 
-        public int GenerateRandomGender()
+        private string RndString(int count)
         {
-            return _random.Next() % 3;
-        }
+            var str = string.Empty;
+            
+            for (int i = 0; i < count; i++)
+                str += RndChar();
 
-        public string GenerateRandomDesignation()
-        {
-            var values = new[] { null, "Dr.", "Prof." };
-            return values[_random.Next() % 3];
+            return str;
         }
-
-        public string GenerateRandomFirstName()
-        {
-            var values = new[] { "Ben", "Peter", "Jens" };
-            return values[_random.Next() % 3];
-        }
-
-        public string GenerateRandomLastName()
-        {
-            var values = new[] { "Müller", "Maier", "Schuster" };
-            return values[_random.Next() % 3];
-        }
-
-        public string GenerateRandomStreet()
-        {
-            var values = new[] { "Hauptstr.", "Mühlweg", "Am Graben" };
-            return values[_random.Next() % 3];
-        }
-
-        public string GenerateRandomHouseNumber()
-        {
-            return (_random.Next() % 100).ToString();
-        }
-
-        public string GenerateRandomZipCode()
-        {
-            return $"{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}";
-        }
-
-        public string GenerateRandomCity()
-        {
-            var values = new[] { "Stuttgart", "Holzgerlingen", "Calw" };
-            return values[_random.Next() % 3];
-        }
-
-        public string GenerateRandomPhone()
-        {
-            return $"{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}{_random.Next() % 10}";
-        }
-
-        public string GenerateRandomEmail(string name = null)
-        {
-            var values = new[] { "de", "com", "net" };
-            return $"{name}@xyz.{values[_random.Next() % 3]}";
-        }
-
-        public string GenerateRandomManufacturer()
-        {
-            var values = new[] { "Mercedes", "VW", "Opel" };
-            return values[_random.Next() % 3];
-        }
-
-        public string GenerateRandomModel()
-        {
-            var values = new[] { "E-Klasse", "Passat", "Insignia" };
-            return values[_random.Next() % 3];
-        }
-
-        public string GenerateRandomLicensePlate()
-        {
-            var values1 = new[] { "S", "BB", "CW" };
-            var values2 = new[] { "AM", "XX", "SB" };
-            return $"{values1[_random.Next() % 3]}-{values2[_random.Next() % 3]} {(_random.Next() % 9999)+1}";
-        }
-
-        public string GenerateRandomVin()
-        {
-            return "sample-vin";
-        }
-
-        public string GenerateRandomHsn()
-        {
-            return "sample-hsn";
-        }
-
-        public string GenerateRandomTsn()
-        {
-            return "sample-tsn";
-        }
-
-        public int GenerateRandomMileage()
-        {
-            return _random.Next();
-        }
+        private string RndChar() => RndElement(Chars);
+        private string RndElement(string[] array) => array[RndInt(array.Length - 1)];
+        private int RndInt(int max) => RndInt(0, max);
+        private int RndInt(int min, int max) => _random.Next() % (max+1)+min;
     }
 }
