@@ -43,7 +43,7 @@
 
         private static readonly string[] Models =
         {
-            "E-Klasse", "Passat", "Insignia"
+            "E-Klasse", "Passat", "Insignia", "Up", "Polo", "Golf"
         };
 
         private static readonly string[] Chars =
