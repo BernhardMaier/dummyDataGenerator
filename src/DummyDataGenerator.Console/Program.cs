@@ -8,7 +8,9 @@ namespace DummyDataGeneratorConsole
     {
         static void Main(string[] args)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "dummydata.sql");
+            const string filename = "dummydata.sql";
+            
+            var path = Path.Combine(Directory.GetCurrentDirectory(), filename);
             Console.WriteLine($"Script will be saved at '{path}'");
             
             Console.WriteLine("Please enter a seed number (integer):");
@@ -42,6 +44,9 @@ namespace DummyDataGeneratorConsole
             Console.WriteLine($"Used '{ddg.Seed}' as seed.");
             Console.WriteLine($"Generated {customers.Count} customers, {vehicles.Count} vehicles and {connections.Count} connections.");
             Console.WriteLine($"Script can be found at '{path}'");
+            
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
         }
     }
 }
