@@ -39,6 +39,8 @@ namespace DummyDataGeneratorConsole
             var content = SqlHandler.CreateScript(customers, vehicles, connections);
             SqlHandler.SaveScript(path, content);
             
+            Console.WriteLine($"Used '{ddg.Seed}' as seed.");
+            Console.WriteLine($"Generated {customers.Count} customers, {vehicles.Count} vehicles and {connections.Count} connections.");
             Console.WriteLine($"Script can be found at '{path}'");
         }
     }

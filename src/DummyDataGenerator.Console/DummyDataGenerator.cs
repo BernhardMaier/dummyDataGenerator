@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DummyDataGeneratorConsole
 {
@@ -36,13 +37,13 @@ namespace DummyDataGeneratorConsole
         {
             var str = string.Empty;
             
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
                 str += RndChar();
 
             return str;
         }
         private string RndChar() => RndElement(Chars);
-        private string RndElement(string[] array) => array[RndInt(array.Length - 1)];
+        private string RndElement(IReadOnlyList<string> array) => array[RndInt(array.Count - 1)];
         private int RndInt(int max) => RndInt(0, max);
         private int RndInt(int min, int max) => _random.Next() % (max+1)+min;
     }
