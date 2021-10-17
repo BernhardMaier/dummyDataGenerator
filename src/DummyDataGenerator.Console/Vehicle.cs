@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DummyDataGeneratorConsole
 {
@@ -13,7 +14,7 @@ namespace DummyDataGeneratorConsole
         public string Vin { get; }
         public string Hsn { get; }
         public string Tsn { get; }
-        public string KType { get; }
+        public string KTypeNumber { get; }
 
         public Vehicle(IDummyDataGenerator ddg)
         {
@@ -25,7 +26,7 @@ namespace DummyDataGeneratorConsole
             Vin = ddg.GenerateRandomVin();
             Hsn = ddg.GenerateRandomHsn();
             Tsn = ddg.GenerateRandomTsn();
-            KType = null;
+            KTypeNumber = ddg.GenerateRandomKTypeNumber();
         }
 
         public static IEnumerable<Vehicle> CreateMany(int count, IDummyDataGenerator ddg)
@@ -36,6 +37,35 @@ namespace DummyDataGeneratorConsole
                 vehicles.Add(new Vehicle(ddg));
 
             return vehicles;
+        }
+        
+        public string AsInsertScript()
+        {
+            var sb = new StringBuilder();
+            sb.Append($"INSERT INTO [dbo].[Vehicles]");
+            sb.Append($" ( [Id]");
+            sb.Append($" , [LicensePlate]");
+            sb.Append($" , [Vin]");
+            sb.Append($" , [Mileage]");
+            sb.Append($" , [Tsn]");
+            sb.Append($" , [Hsn]");
+            sb.Append($" , [KTypeNumber]");
+            sb.Append($" , [Model]");
+            sb.Append($" , [Manufacturer])");
+            sb.Append($"VALUES");
+            sb.Append($" ( {Id}");
+            sb.Append($" , {LicensePlate}");
+            sb.Append($" , '{Vin}'");
+            sb.Append($" , '{Mileage}'");
+            sb.Append($" , '{Tsn}'");
+            sb.Append($" , '{Hsn}'");
+            sb.Append($" , '{KTypeNumber}'");
+            sb.Append($" , '{Model}'");
+            sb.Append($" , '{Manufacturer}')");
+            sb.Append($"GO");
+            sb.Append($"");
+
+            return sb.ToString();
         }
     }
 }

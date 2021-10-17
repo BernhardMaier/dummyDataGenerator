@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DummyDataGeneratorConsole
 {
@@ -12,7 +13,7 @@ namespace DummyDataGeneratorConsole
         public string LastName { get; }
         public string Street { get; }
         public string HouseNumber { get; }
-        public string ZipCode { get; }
+        public string Zip { get; }
         public string City { get; }
         public string Phone { get; }
         public string Email { get; }
@@ -26,7 +27,7 @@ namespace DummyDataGeneratorConsole
             LastName = ddg.GenerateRandomLastName();
             Street = ddg.GenerateRandomStreet();
             HouseNumber = ddg.GenerateRandomHouseNumber();
-            ZipCode = ddg.GenerateRandomZipCode();
+            Zip = ddg.GenerateRandomZip();
             City = ddg.GenerateRandomCity();
             Phone = ddg.GenerateRandomPhone();
             Email = ddg.GenerateRandomEmail($"{FirstName}.{LastName}");
@@ -40,6 +41,39 @@ namespace DummyDataGeneratorConsole
                 customers.Add(new Customer(ddg));
 
             return customers;
+        }
+
+        public string AsInsertScript()
+        {
+            var sb = new StringBuilder();
+            sb.Append($"INSERT INTO [dbo].[Customers]");
+            sb.Append($" ( [Id]");
+            sb.Append($" , [Gender]");
+            sb.Append($" , [Designation]");
+            sb.Append($" , [FirstName]");
+            sb.Append($" , [LastName]");
+            sb.Append($" , [Street]");
+            sb.Append($" , [HouseNumber]");
+            sb.Append($" , [Zip]");
+            sb.Append($" , [City]");
+            sb.Append($" , [Phone]");
+            sb.Append($" , [Email])");
+            sb.Append($"VALUES");
+            sb.Append($" ( {Id}");
+            sb.Append($" , {Gender}");
+            sb.Append($" , '{Designation}'");
+            sb.Append($" , '{FirstName}'");
+            sb.Append($" , '{LastName}'");
+            sb.Append($" , '{Street}'");
+            sb.Append($" , '{HouseNumber}'");
+            sb.Append($" , '{Zip}'");
+            sb.Append($" , '{City}'");
+            sb.Append($" , '{Phone}'");
+            sb.Append($" , '{Email}')");
+            sb.Append($"GO");
+            sb.Append($"");
+
+            return sb.ToString();
         }
     }
 }

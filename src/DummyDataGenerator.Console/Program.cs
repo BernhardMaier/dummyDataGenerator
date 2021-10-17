@@ -4,34 +4,19 @@ using System.Linq;
 
 namespace DummyDataGeneratorConsole
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            const string filename = "dummydata.sql";
+            const string filename = "insertDummyData.sql";
             
             var path = Path.Combine(Directory.GetCurrentDirectory(), filename);
             Console.WriteLine($"Script will be saved at '{path}'");
             
-            Console.WriteLine("Please enter a seed number (integer):");
-            var inputSeed = Console.ReadLine();
-            if(!int.TryParse(inputSeed, out var seed))
-                Environment.Exit(1);
-            
-            Console.WriteLine("Please enter how many customer to generate (integer):");
-            var inputCustomerCount = Console.ReadLine();
-            if(!int.TryParse(inputCustomerCount, out var customerCount))
-                Environment.Exit(1);
-            
-            Console.WriteLine("Please enter how many vehicles to generate (integer):");
-            var inputVehicleCount = Console.ReadLine();
-            if(!int.TryParse(inputVehicleCount, out var vehicleCount))
-                Environment.Exit(1);
-            
-            Console.WriteLine("Please enter how many connections to generate (integer):");
-            var inputConnectionCount = Console.ReadLine();
-            if(!int.TryParse(inputConnectionCount, out var connectionCount))
-                Environment.Exit(1);
+            RequestInput("Please enter a seed number (integer):", out var seed);
+            RequestInput("Please enter how many customer to generate (integer):", out var customerCount);
+            RequestInput("Please enter how many vehicles to generate (integer):", out var vehicleCount);
+            RequestInput("Please enter how many connections to generate (integer):", out var connectionCount);
             
             var ddg = new DummyDataGenerator(seed);
             var customers = Customer.CreateMany(customerCount, ddg).ToList();
@@ -47,6 +32,16 @@ namespace DummyDataGeneratorConsole
             
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
+        }
+
+        private static void RequestInput(string message, out int inputVariable)
+        {
+            Console.WriteLine(message);
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out inputVariable)) return;
+            Console.WriteLine("Invalid input. Press any key to exit.");
+            Console.ReadKey();
+            Environment.Exit(1);
         }
     }
 }

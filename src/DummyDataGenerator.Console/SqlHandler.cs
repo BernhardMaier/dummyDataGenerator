@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace DummyDataGeneratorConsole
@@ -11,7 +10,18 @@ namespace DummyDataGeneratorConsole
             IEnumerable<Vehicle> vehicles,
             IEnumerable<Connection> connections)
         {
-            return new [] { string.Empty };
+            var script = new List<string>();
+
+            foreach (var customer in customers)
+                script.Add(customer.AsInsertScript());
+            
+            foreach (var vehicle in vehicles)
+                script.Add(vehicle.AsInsertScript());
+            
+            foreach (var connection in connections)
+                script.Add(connection.AsInsertScript());
+            
+            return script.ToArray();
         }
 
         public static void SaveScript(string path, string[] content) => File.WriteAllLines(path, content);
