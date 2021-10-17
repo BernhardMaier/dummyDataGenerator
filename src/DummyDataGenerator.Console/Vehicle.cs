@@ -42,28 +42,27 @@ namespace DummyDataGeneratorConsole
         public string AsInsertScript()
         {
             var sb = new StringBuilder();
-            sb.Append($"INSERT INTO [dbo].[Vehicles]");
-            sb.Append($" ( [Id]");
-            sb.Append($" , [LicensePlate]");
-            sb.Append($" , [Vin]");
-            sb.Append($" , [Mileage]");
-            sb.Append($" , [Tsn]");
-            sb.Append($" , [Hsn]");
-            sb.Append($" , [KTypeNumber]");
-            sb.Append($" , [Model]");
-            sb.Append($" , [Manufacturer])");
-            sb.Append($"VALUES");
-            sb.Append($" ( {Id}");
-            sb.Append($" , {LicensePlate}");
-            sb.Append($" , '{Vin}'");
-            sb.Append($" , '{Mileage}'");
-            sb.Append($" , '{Tsn}'");
-            sb.Append($" , '{Hsn}'");
-            sb.Append($" , '{KTypeNumber}'");
-            sb.Append($" , '{Model}'");
-            sb.Append($" , '{Manufacturer}')");
-            sb.Append($"GO");
-            sb.Append($"");
+            sb.Append($"INSERT INTO [dbo].[Vehicles] ");
+            sb.Append($"([Id],");
+            sb.Append($"[LicensePlate],");
+            sb.Append($"[Vin],");
+            sb.Append($"[Manufacturer],");
+            sb.Append($"[Model],");
+            sb.Append($"[Hsn],");
+            sb.Append($"[Tsn],");
+            sb.Append($"[KTypeNumber],");
+            sb.Append($"[Mileage])");
+            sb.Append($" VALUES ");
+            sb.Append($"({Id},");
+            sb.Append($"'{LicensePlate}',");
+            sb.Append($"'{Vin}',");
+            sb.Append($"'{Manufacturer}',");
+            sb.Append($"'{Model}',");
+            sb.Append($"'{Hsn}',");
+            sb.Append($"'{Tsn}',");
+            sb.Append($"'{KTypeNumber}',");
+            sb.Append($"{Mileage})");
+            sb.Append($" GO");
 
             return sb.ToString();
         }

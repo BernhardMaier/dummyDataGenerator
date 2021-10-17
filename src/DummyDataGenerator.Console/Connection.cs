@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace DummyDataGeneratorConsole
 {
     public record Connection
     {
+        public Guid Id { get; }
         public Customer Customer { get; }
         public Vehicle Vehicle { get; }
 
-        public Connection(Customer customer, Vehicle vehicle)
+        public Connection(Customer customer, Vehicle vehicle, IDummyDataGenerator ddg)
         {
+            Id = ddg.GenerateRandomGuid();
             Customer = customer;
             Vehicle = vehicle;
         }
@@ -33,27 +36,15 @@ namespace DummyDataGeneratorConsole
         public string AsInsertScript()
         {
             var sb = new StringBuilder();
-            // sb.Append($"INSERT INTO [dbo].[Customers]");
-            // sb.Append($" ( [Id]");
-            // sb.Append($" , [LicensePlate]");
-            // sb.Append($" , [Vin]");
-            // sb.Append($" , [Mileage]");
-            // sb.Append($" , [Tsn]");
-            // sb.Append($" , [Hsn]");
-            // sb.Append($" , [KTypeNumber]");
-            // sb.Append($" , [Model]");
-            // sb.Append($" , [Manufacturer])");
-            // sb.Append($"VALUES");
-            // sb.Append($" ( {Id}");
-            // sb.Append($" , {LicensePlate}");
-            // sb.Append($" , '{Vin}'");
-            // sb.Append($" , '{Tsn}'");
-            // sb.Append($" , '{Hsn}'");
-            // sb.Append($" , '{KType}'");
-            // sb.Append($" , '{Model}'");
-            // sb.Append($" , '{Manufacturer}')");
-            sb.Append($"GO");
-            sb.Append($"");
+            sb.Append($"INSERT INTO [dbo].[Connections] ");
+            sb.Append($"([Id],");
+            sb.Append($"[Customer],");
+            sb.Append($"[Vehicle])");
+            sb.Append($" VALUES ");
+            sb.Append($"({Id},");
+            sb.Append($"{Customer.Id},");
+            sb.Append($"{Vehicle.Id})");
+            sb.Append($" GO");
 
             return sb.ToString();
         }

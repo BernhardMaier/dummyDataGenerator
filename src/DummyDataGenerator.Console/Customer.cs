@@ -46,32 +46,31 @@ namespace DummyDataGeneratorConsole
         public string AsInsertScript()
         {
             var sb = new StringBuilder();
-            sb.Append($"INSERT INTO [dbo].[Customers]");
-            sb.Append($" ( [Id]");
-            sb.Append($" , [Gender]");
-            sb.Append($" , [Designation]");
-            sb.Append($" , [FirstName]");
-            sb.Append($" , [LastName]");
-            sb.Append($" , [Street]");
-            sb.Append($" , [HouseNumber]");
-            sb.Append($" , [Zip]");
-            sb.Append($" , [City]");
-            sb.Append($" , [Phone]");
-            sb.Append($" , [Email])");
-            sb.Append($"VALUES");
-            sb.Append($" ( {Id}");
-            sb.Append($" , {Gender}");
-            sb.Append($" , '{Designation}'");
-            sb.Append($" , '{FirstName}'");
-            sb.Append($" , '{LastName}'");
-            sb.Append($" , '{Street}'");
-            sb.Append($" , '{HouseNumber}'");
-            sb.Append($" , '{Zip}'");
-            sb.Append($" , '{City}'");
-            sb.Append($" , '{Phone}'");
-            sb.Append($" , '{Email}')");
-            sb.Append($"GO");
-            sb.Append($"");
+            sb.Append($"INSERT INTO [dbo].[Customers] ");
+            sb.Append($"([Id],");
+            sb.Append($"[Gender],");
+            sb.Append($"[Designation],");
+            sb.Append($"[FirstName],");
+            sb.Append($"[LastName],");
+            sb.Append($"[Street],");
+            sb.Append($"[HouseNumber],");
+            sb.Append($"[Zip],");
+            sb.Append($"[City],");
+            sb.Append($"[Phone],");
+            sb.Append($"[Email])");
+            sb.Append($" VALUES ");
+            sb.Append($"({Id},");
+            sb.Append($"{Gender},");
+            sb.Append($"'{Designation}',");
+            sb.Append($"'{FirstName}',");
+            sb.Append($"'{LastName}',");
+            sb.Append($"'{Street}',");
+            sb.Append($"'{HouseNumber}',");
+            sb.Append($"'{Zip}',");
+            sb.Append($"'{City}',");
+            sb.Append($"'{Phone}',");
+            sb.Append($"'{Email}')");
+            sb.Append($" GO");
 
             return sb.ToString();
         }
