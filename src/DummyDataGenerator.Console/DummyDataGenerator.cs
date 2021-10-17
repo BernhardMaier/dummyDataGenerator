@@ -21,7 +21,7 @@ namespace DummyDataGeneratorConsole
         public string GenerateRandomLastName() => RndElement(LastNames);
         public string GenerateRandomStreet() => RndElement(Streets);
         public string GenerateRandomHouseNumber() => RndInt(100).ToString();
-        public string GenerateRandomZipCode() => $"{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
+        public string GenerateRandomZip() => $"{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
         public string GenerateRandomCity() => RndElement(Cities);
         public string GenerateRandomPhone() => $"{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
         public string GenerateRandomEmail(string name = null) => $"{name}@{RndString(RndInt(3,5)).ToLower()}.{RndElement(TopLevelDomains)}";
@@ -31,6 +31,7 @@ namespace DummyDataGeneratorConsole
         public string GenerateRandomVin() => "sample-vin";
         public string GenerateRandomHsn() => "sample-hsn";
         public string GenerateRandomTsn() => "sample-tsn";
+        public string GenerateRandomKTypeNumber() => "sample-ktyp";
         public int GenerateRandomMileage() => RndInt(10000000);
 
         private string RndString(int count)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace DummyDataGeneratorConsole
 {
@@ -28,5 +29,34 @@ namespace DummyDataGeneratorConsole
 
             return connections;
         }
+        
+        public string AsInsertScript()
+        {
+            var sb = new StringBuilder();
+            // sb.Append($"INSERT INTO [dbo].[Customers]");
+            // sb.Append($" ( [Id]");
+            // sb.Append($" , [LicensePlate]");
+            // sb.Append($" , [Vin]");
+            // sb.Append($" , [Mileage]");
+            // sb.Append($" , [Tsn]");
+            // sb.Append($" , [Hsn]");
+            // sb.Append($" , [KTypeNumber]");
+            // sb.Append($" , [Model]");
+            // sb.Append($" , [Manufacturer])");
+            // sb.Append($"VALUES");
+            // sb.Append($" ( {Id}");
+            // sb.Append($" , {LicensePlate}");
+            // sb.Append($" , '{Vin}'");
+            // sb.Append($" , '{Tsn}'");
+            // sb.Append($" , '{Hsn}'");
+            // sb.Append($" , '{KType}'");
+            // sb.Append($" , '{Model}'");
+            // sb.Append($" , '{Manufacturer}')");
+            sb.Append($"GO");
+            sb.Append($"");
+
+            return sb.ToString();
+        }
+
     }
 }

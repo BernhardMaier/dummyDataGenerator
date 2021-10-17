@@ -12,7 +12,7 @@ namespace DummyDataGeneratorConsole
         string GenerateRandomLastName();
         string GenerateRandomStreet();
         string GenerateRandomHouseNumber();
-        string GenerateRandomZipCode();
+        string GenerateRandomZip();
         string GenerateRandomCity();
         string GenerateRandomPhone();
         string GenerateRandomEmail(string name = null);
@@ -23,6 +23,7 @@ namespace DummyDataGeneratorConsole
         string GenerateRandomVin();
         string GenerateRandomHsn();
         string GenerateRandomTsn();
+        string GenerateRandomKTypeNumber();
         int GenerateRandomMileage();
     }
 }
