@@ -32,7 +32,7 @@ namespace DummyDataGeneratorConsole
         public string GenerateRandomHsn() => "sample-hsn";
         public string GenerateRandomTsn() => "sample-tsn";
         public string GenerateRandomKTypeNumber() => "sample-ktyp";
-        public int GenerateRandomMileage() => RndInt(10000000);
+        public int GenerateRandomMileage() => RndInt(1000000);
 
         private string RndString(int count)
         {
