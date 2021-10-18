@@ -28,10 +28,10 @@ namespace DummyDataGeneratorConsole
         public string GenerateRandomManufacturer() => RndElement(Manufacturers);
         public string GenerateRandomModel() => RndElement(Models);
         public string GenerateRandomLicensePlate() => $"{RndString(RndInt(1,3))}-{RndString(RndInt(1,2))} {RndInt(9999)}";
-        public string GenerateRandomVin() => "sample-vin";
-        public string GenerateRandomHsn() => "sample-hsn";
-        public string GenerateRandomTsn() => "sample-tsn";
-        public string GenerateRandomKTypeNumber() => "sample-ktyp";
+        public string GenerateRandomVin() => "NULL";
+        public string GenerateRandomHsn() => "NULL";
+        public string GenerateRandomTsn() => "NULL";
+        public string GenerateRandomKTypeNumber() => "NULL";
         public int GenerateRandomMileage() => RndInt(1000000);
 
         private string RndString(int count)
