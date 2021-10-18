@@ -6,13 +6,11 @@ namespace DummyDataGeneratorConsole
 {
     public record Connection
     {
-        public Guid Id { get; }
         public Customer Customer { get; }
         public Vehicle Vehicle { get; }
 
         public Connection(Customer customer, Vehicle vehicle, IDummyDataGenerator ddg)
         {
-            Id = ddg.GenerateRandomGuid();
             Customer = customer;
             Vehicle = vehicle;
         }
@@ -37,11 +35,9 @@ namespace DummyDataGeneratorConsole
         {
             var sb = new StringBuilder();
             sb.Append($"INSERT INTO [dbo].[Connections] ");
-            sb.Append($"([Id],");
-            sb.Append($"[Customer],");
-            sb.Append($"[Vehicle])");
+            sb.Append($"[CustomerId],");
+            sb.Append($"[VehicleId])");
             sb.Append($" VALUES ");
-            sb.Append($"({Id},");
             sb.Append($"{Customer.Id},");
             sb.Append($"{Vehicle.Id})");
             sb.Append($" GO");
