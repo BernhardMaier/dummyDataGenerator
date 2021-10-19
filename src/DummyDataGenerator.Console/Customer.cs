@@ -24,7 +24,7 @@ namespace DummyDataGenerator.Console
             Gender = ddg.GenerateRandomGender();
             Designation = ddg.GenerateRandomDesignation();
             FirstName = ddg.GenerateRandomFirstName();
-            LastName = ddg.GenerateRandomLastName();
+            LastName = ddg.GenerateRandomLastName().Replace("'", "");
             Street = ddg.GenerateRandomStreet();
             HouseNumber = ddg.GenerateRandomHouseNumber();
             Zip = ddg.GenerateRandomZip();
