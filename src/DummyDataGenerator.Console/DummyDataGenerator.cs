@@ -1,10 +1,9 @@
-﻿using RandomDataGenerator.FieldOptions;
-using RandomDataGenerator.Randomizers;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using RandomDataGenerator.FieldOptions;
+using RandomDataGenerator.Randomizers;
 
-namespace DummyDataGeneratorConsole
+namespace DummyDataGenerator.Console
 {
     public partial class DummyDataGenerator : IDummyDataGenerator
     {

@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DummyDataGeneratorConsole
+namespace DummyDataGenerator.Console
 {
     public record Customer : ISqlEntity
     {
         public Guid Id { get; }
-        public int Gender { get; }
-        public string Designation { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string Street { get; }
-        public string HouseNumber { get; }
-        public string Zip { get; }
-        public string City { get; }
-        public string Phone { get; }
-        public string Email { get; }
+        private int Gender { get; }
+        private string Designation { get; }
+        private string FirstName { get; }
+        private string LastName { get; }
+        private string Street { get; }
+        private string HouseNumber { get; }
+        private string Zip { get; }
+        private string City { get; }
+        private string Phone { get; }
+        private string Email { get; }
 
-        public Customer(IDummyDataGenerator ddg)
+        private Customer(IDummyDataGenerator ddg)
         {
             Id = ddg.GenerateRandomGuid();
             Gender = ddg.GenerateRandomGender();

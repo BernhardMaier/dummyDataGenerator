@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
 using System.Text;
 
-namespace DummyDataGeneratorConsole
+namespace DummyDataGenerator.Console
 {
     public record Connection : ISqlEntity
     {
-        public Customer Customer { get; }
-        public Vehicle Vehicle { get; }
+        private Customer Customer { get; }
+        private Vehicle Vehicle { get; }
 
-        public Connection(Customer customer, Vehicle vehicle)
+        private Connection(Customer customer, Vehicle vehicle)
         {
             Customer = customer;
             Vehicle = vehicle;

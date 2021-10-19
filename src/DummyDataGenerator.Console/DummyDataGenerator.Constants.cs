@@ -1,4 +1,4 @@
-﻿namespace DummyDataGeneratorConsole
+﻿namespace DummyDataGenerator.Console
 {
     public partial class DummyDataGenerator
     {

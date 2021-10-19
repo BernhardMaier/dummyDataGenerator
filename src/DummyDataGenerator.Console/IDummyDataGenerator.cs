@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace DummyDataGeneratorConsole
+namespace DummyDataGenerator.Console
 {
     public interface IDummyDataGenerator
     {
