@@ -34,7 +34,7 @@ namespace DummyDataGeneratorConsole
         public string GenerateRandomHouseNumber() => RndInt(100).ToString();
         public string GenerateRandomZip() => $"{RndIntString(5)}";
         public string GenerateRandomCity() => _cityGenerator.Generate();
-        public string GenerateRandomPhone() => $"{RndIntString(10)}";
+        public string GenerateRandomPhone() => $"{RndIntString(5)}/{RndIntString(5)}";
         public string GenerateRandomEmail(string name = null) => $"{name}@{RndCharString(RndInt(3,5)).ToLower()}.{RndElement(TopLevelDomains)}";
         public string GenerateRandomManufacturer() => RndElement(Manufacturers);
         public string GenerateRandomModel() => RndElement(Models);
@@ -42,7 +42,7 @@ namespace DummyDataGeneratorConsole
         public string GenerateRandomVin() => _vinGenerator.Generate();
         public string GenerateRandomHsn() => $"{RndIntString(4)}";
         public string GenerateRandomTsn() => $"{RndCharString(3)}{RndIntString(5)}";
-        public string GenerateRandomKTypeNumber() => null;
+        public string GenerateRandomKTypeNumber() => $"{RndIntString(5)}";
         public int GenerateRandomMileage() => RndInt(200000);
 
         private string RndCharString(int count)
@@ -63,7 +63,7 @@ namespace DummyDataGeneratorConsole
 
             return str;
         }
-        private string RndChar() => RndElement(Chars);
+        private char RndChar() => Chars[RndInt(0, Chars.Length-1)];
         private string RndElement(IReadOnlyList<string> array) => array[RndInt(array.Count - 1)];
         private int RndInt(int max) => RndInt(0, max);
         private int RndInt(int min, int max) => _random.Next() % (max+1)+min;
