@@ -61,7 +61,7 @@ namespace DummyDataGenerator.Console
             sb.Append($" VALUES ");
             sb.Append($"('{Id}',");
             sb.Append($"{Gender},");
-            sb.Append($"'{Designation}',");
+            sb.Append($"'{Designation}',".Replace("''", "NULL"));
             sb.Append($"'{FirstName}',");
             sb.Append($"'{LastName}',");
             sb.Append($"'{Street}',");
