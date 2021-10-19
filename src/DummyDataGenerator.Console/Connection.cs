@@ -48,7 +48,7 @@ namespace DummyDataGenerator.Console
             sb.Append($"([CustomerId],");
             sb.Append($"[VehicleId])");
             sb.Append($" VALUES ");
-            sb.Append($"'({Customer.Id}',");
+            sb.Append($"('{Customer.Id}',");
             sb.Append($"'{Vehicle.Id}')");
             sb.Append(Environment.NewLine);
             sb.Append($"GO");
