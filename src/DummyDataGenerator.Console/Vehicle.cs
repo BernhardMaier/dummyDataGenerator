@@ -54,17 +54,17 @@ namespace DummyDataGenerator.Console
         {
             var sb = new StringBuilder();
 
-            sb.Append($"INSERT INTO [dbo].[Vehicles] ");
-            sb.Append($"([Id],");
-            sb.Append($"[LicensePlate],");
-            sb.Append($"[Vin],");
-            sb.Append($"[Manufacturer],");
-            sb.Append($"[Model],");
-            sb.Append($"[Hsn],");
-            sb.Append($"[Tsn],");
-            sb.Append($"[KTypeNumber],");
-            sb.Append($"[Mileage])");
-            sb.Append($" VALUES ");
+            sb.Append("INSERT INTO [dbo].[Vehicles] ");
+            sb.Append("([Id],");
+            sb.Append("[LicensePlate],");
+            sb.Append("[Vin],");
+            sb.Append("[Manufacturer],");
+            sb.Append("[Model],");
+            sb.Append("[Hsn],");
+            sb.Append("[Tsn],");
+            sb.Append("[KTypeNumber],");
+            sb.Append("[Mileage])");
+            sb.Append(" VALUES ");
             sb.Append($"('{Id}',");
             sb.Append($"'{LicensePlate}',");
             sb.Append($"'{Vin}',");
@@ -75,7 +75,7 @@ namespace DummyDataGenerator.Console
             sb.Append($"'{KTypeNumber}',");
             sb.Append($"{Mileage})");
             sb.Append(Environment.NewLine);
-            sb.Append($"GO");
+            sb.Append("GO");
 
             return sb.ToString().Replace("''", "NULL");
         }

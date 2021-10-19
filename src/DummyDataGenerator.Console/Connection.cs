@@ -44,14 +44,14 @@ namespace DummyDataGenerator.Console
         {
             var sb = new StringBuilder();
 
-            sb.Append($"INSERT INTO [dbo].[CustomerVehicleConnections] ");
-            sb.Append($"([CustomerId],");
-            sb.Append($"[VehicleId])");
-            sb.Append($" VALUES ");
+            sb.Append("INSERT INTO [dbo].[CustomerVehicleConnections] ");
+            sb.Append("([CustomerId],");
+            sb.Append("[VehicleId])");
+            sb.Append(" VALUES ");
             sb.Append($"('{Customer.Id}',");
             sb.Append($"'{Vehicle.Id}')");
             sb.Append(Environment.NewLine);
-            sb.Append($"GO");
+            sb.Append("GO");
 
             return sb.ToString().Replace("''", "NULL");
         }

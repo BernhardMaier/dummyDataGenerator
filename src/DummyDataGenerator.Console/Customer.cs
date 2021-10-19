@@ -59,19 +59,19 @@ namespace DummyDataGenerator.Console
         {
             var sb = new StringBuilder();
 
-            sb.Append($"INSERT INTO [dbo].[Customers] ");
-            sb.Append($"([Id],");
-            sb.Append($"[Gender],");
-            sb.Append($"[Designation],");
-            sb.Append($"[FirstName],");
-            sb.Append($"[LastName],");
-            sb.Append($"[Street],");
-            sb.Append($"[HouseNumber],");
-            sb.Append($"[Zip],");
-            sb.Append($"[City],");
-            sb.Append($"[Phone],");
-            sb.Append($"[Email])");
-            sb.Append($" VALUES ");
+            sb.Append("INSERT INTO [dbo].[Customers] ");
+            sb.Append("([Id],");
+            sb.Append("[Gender],");
+            sb.Append("[Designation],");
+            sb.Append("[FirstName],");
+            sb.Append("[LastName],");
+            sb.Append("[Street],");
+            sb.Append("[HouseNumber],");
+            sb.Append("[Zip],");
+            sb.Append("[City],");
+            sb.Append("[Phone],");
+            sb.Append("[Email])");
+            sb.Append(" VALUES ");
             sb.Append($"('{Id}',");
             sb.Append($"{Gender},");
             sb.Append($"'{Designation}',");
@@ -84,7 +84,7 @@ namespace DummyDataGenerator.Console
             sb.Append($"'{Phone}',");
             sb.Append($"'{Email}')");
             sb.Append(Environment.NewLine);
-            sb.Append($"GO");
+            sb.Append("GO");
 
             return sb.ToString().Replace("''", "NULL");
         }
