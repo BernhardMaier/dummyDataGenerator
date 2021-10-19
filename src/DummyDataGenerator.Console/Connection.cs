@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace DummyDataGenerator.Console
@@ -43,13 +44,14 @@ namespace DummyDataGenerator.Console
         {
             var sb = new StringBuilder();
 
-            sb.Append($"INSERT INTO [dbo].[Connections] ");
-            sb.Append($"[CustomerId],");
+            sb.Append($"INSERT INTO [dbo].[CustomerVehicleConnections] ");
+            sb.Append($"([CustomerId],");
             sb.Append($"[VehicleId])");
             sb.Append($" VALUES ");
-            sb.Append($"{Customer.Id},");
-            sb.Append($"{Vehicle.Id})");
-            sb.Append($" GO");
+            sb.Append($"'({Customer.Id}',");
+            sb.Append($"'{Vehicle.Id}')");
+            sb.Append(Environment.NewLine);
+            sb.Append($"GO");
 
             return sb.ToString();
         }

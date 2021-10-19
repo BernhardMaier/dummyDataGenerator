@@ -53,7 +53,7 @@ namespace DummyDataGenerator.Console
             sb.Append($"[KTypeNumber],");
             sb.Append($"[Mileage])");
             sb.Append($" VALUES ");
-            sb.Append($"({Id},");
+            sb.Append($"('{Id}',");
             sb.Append($"'{LicensePlate}',");
             sb.Append($"'{Vin}',");
             sb.Append($"'{Manufacturer}',");
@@ -62,7 +62,8 @@ namespace DummyDataGenerator.Console
             sb.Append($"'{Tsn}',");
             sb.Append($"'{KTypeNumber}',");
             sb.Append($"{Mileage})");
-            sb.Append($" GO");
+            sb.Append(Environment.NewLine);
+            sb.Append($"GO");
 
             return sb.ToString();
         }
