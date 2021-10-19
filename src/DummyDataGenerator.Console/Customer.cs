@@ -36,7 +36,6 @@ namespace DummyDataGeneratorConsole
         public static IEnumerable<Customer> CreateMany(int count, IDummyDataGenerator ddg)
         {
             var customers = new List<Customer>();
-            
             for (var i = 0; i < count; i++)
                 customers.Add(new Customer(ddg));
 
@@ -46,7 +45,7 @@ namespace DummyDataGeneratorConsole
         public string AsInsertScript()
         {
             var sb = new StringBuilder();
-            
+
             sb.Append($"INSERT INTO [dbo].[Customers] ");
             sb.Append($"([Id],");
             sb.Append($"[Gender],");

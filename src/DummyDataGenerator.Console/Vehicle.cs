@@ -32,7 +32,6 @@ namespace DummyDataGeneratorConsole
         public static IEnumerable<Vehicle> CreateMany(int count, IDummyDataGenerator ddg)
         {
             var vehicles = new List<Vehicle>();
-            
             for (var i = 0; i < count; i++)
                 vehicles.Add(new Vehicle(ddg));
 
@@ -42,7 +41,7 @@ namespace DummyDataGeneratorConsole
         public string AsInsertScript()
         {
             var sb = new StringBuilder();
-            
+
             sb.Append($"INSERT INTO [dbo].[Vehicles] ");
             sb.Append($"([Id],");
             sb.Append($"[LicensePlate],");

@@ -14,14 +14,12 @@ namespace DummyDataGeneratorConsole
             Console.WriteLine($"Script will be saved at '{path}'");
             
             RequestInput("Please enter a seed number (integer):", out var seed);
-            RequestInput("Please enter how many customer to generate (integer):", out var customerCount);
-            RequestInput("Please enter how many vehicles to generate (integer):", out var vehicleCount);
-            RequestInput("Please enter how many connections to generate (integer):", out var connectionCount);
+            RequestInput("Please enter how many customers/vehicles to generate (integer):", out var count);
             
             var ddg = new DummyDataGenerator(seed);
-            var customers = Customer.CreateMany(customerCount, ddg).ToList();
-            var vehicles = Vehicle.CreateMany(vehicleCount, ddg).ToList();
-            var connections = Connection.CreateMany(connectionCount, customers, vehicles, ddg).ToList();
+            var customers = Customer.CreateMany(count, ddg).ToList();
+            var vehicles = Vehicle.CreateMany(count, ddg).ToList();
+            var connections = Connection.CreateMany(customers.ToArray(), vehicles.ToArray()).ToList();
 
             var content = SqlHandler.CreateScript(customers, vehicles, connections);
             SqlHandler.SaveScript(path, content);

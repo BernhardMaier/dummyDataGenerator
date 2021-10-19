@@ -2,6 +2,7 @@
 using RandomDataGenerator.Randomizers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DummyDataGeneratorConsole
 {
@@ -44,7 +45,6 @@ namespace DummyDataGeneratorConsole
         public string GenerateRandomTsn() => $"{RndCharString(3)}{RndIntString(5)}";
         public string GenerateRandomKTypeNumber() => $"{RndIntString(5)}";
         public int GenerateRandomMileage() => RndInt(200000);
-
         private string RndCharString(int count)
         {
             var str = string.Empty;
