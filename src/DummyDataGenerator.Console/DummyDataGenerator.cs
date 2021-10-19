@@ -38,7 +38,7 @@ namespace DummyDataGenerator.Console
         public string GenerateRandomEmail(string name = null) => $"{name}@{RndCharString(RndInt(3,5)).ToLower()}.{RndElement(TopLevelDomains)}";
         public string GenerateRandomManufacturer() => RndElement(Manufacturers);
         public string GenerateRandomModel() => RndElement(Models);
-        public string GenerateRandomLicensePlate() => $"{RndCharString(RndInt(1,3))}-{RndCharString(RndInt(1,2))} {RndInt(9999)}";
+        public string GenerateRandomLicensePlate() => $"{RndCharString(RndInt(1,2))}-{RndCharString(RndInt(1,2))} {RndInt(999)}";
         public string GenerateRandomVin() => _vinGenerator.Generate();
         public string GenerateRandomHsn() => $"{RndIntString(4)}";
         public string GenerateRandomTsn() => $"{RndCharString(3)}{RndIntString(5)}";
@@ -65,6 +65,6 @@ namespace DummyDataGenerator.Console
         private char RndChar() => Chars[RndInt(0, Chars.Length-1)];
         private string RndElement(IReadOnlyList<string> array) => array[RndInt(array.Count - 1)];
         private int RndInt(int max) => RndInt(0, max);
-        private int RndInt(int min, int max) => _random.Next() % (max+1)+min;
+        private int RndInt(int min, int max) => _random.Next() % max + min;
     }
 }
