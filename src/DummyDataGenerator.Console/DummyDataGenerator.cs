@@ -7,7 +7,7 @@ namespace DummyDataGeneratorConsole
 {
     public partial class DummyDataGenerator : IDummyDataGenerator
     {
-        private readonly string vinPattern = @"^[a-zA-Z]{3}[0-9a-zA-Z]{6}[0-9a-zA-Z]{1}[0-9a-zA-Z]{1}[0-9a-zA-Z]{3}[0-9]{3}$";
+        private const string VinPattern = @"^[a-zA-Z]{3}[0-9a-zA-Z]{6}[0-9a-zA-Z]{1}[0-9a-zA-Z]{1}[0-9a-zA-Z]{3}[0-9]{3}$";
         private readonly Random _random;
         private readonly IRandomizerString _vinGenerator;
         private readonly IRandomizerString _firstNameGenerator;
@@ -19,7 +19,7 @@ namespace DummyDataGeneratorConsole
         {
             Seed = seed;
             _random = new Random(Seed);
-            _vinGenerator = RandomizerFactory.GetRandomizer(new FieldOptionsTextRegex { Pattern = vinPattern });
+            _vinGenerator = RandomizerFactory.GetRandomizer(new FieldOptionsTextRegex { Pattern = VinPattern });
             _firstNameGenerator = RandomizerFactory.GetRandomizer(new FieldOptionsFirstName());
             _lastNameGenerator = RandomizerFactory.GetRandomizer(new FieldOptionsLastName());
             _cityGenerator = RandomizerFactory.GetRandomizer(new FieldOptionsCity());
@@ -32,25 +32,34 @@ namespace DummyDataGeneratorConsole
         public string GenerateRandomLastName() => _lastNameGenerator.Generate();
         public string GenerateRandomStreet() => RndElement(Streets);
         public string GenerateRandomHouseNumber() => RndInt(100).ToString();
-        public string GenerateRandomZip() => $"{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
+        public string GenerateRandomZip() => $"{RndIntString(5)}";
         public string GenerateRandomCity() => _cityGenerator.Generate();
-        public string GenerateRandomPhone() => $"{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
-        public string GenerateRandomEmail(string name = null) => $"{name}@{RndString(RndInt(3,5)).ToLower()}.{RndElement(TopLevelDomains)}";
+        public string GenerateRandomPhone() => $"{RndIntString(10)}";
+        public string GenerateRandomEmail(string name = null) => $"{name}@{RndCharString(RndInt(3,5)).ToLower()}.{RndElement(TopLevelDomains)}";
         public string GenerateRandomManufacturer() => RndElement(Manufacturers);
         public string GenerateRandomModel() => RndElement(Models);
-        public string GenerateRandomLicensePlate() => $"{RndString(RndInt(1,3))}-{RndString(RndInt(1,2))} {RndInt(9999)}";
+        public string GenerateRandomLicensePlate() => $"{RndCharString(RndInt(1,3))}-{RndCharString(RndInt(1,2))} {RndInt(9999)}";
         public string GenerateRandomVin() => _vinGenerator.Generate();
-        public string GenerateRandomHsn() => $"{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
-        public string GenerateRandomTsn() => $"{RndString(3)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}{RndInt(9)}";
-        public string GenerateRandomKTypeNumber() => "NULL";
-        public int GenerateRandomMileage() => RndInt(1000000);
+        public string GenerateRandomHsn() => $"{RndIntString(4)}";
+        public string GenerateRandomTsn() => $"{RndCharString(3)}{RndIntString(5)}";
+        public string GenerateRandomKTypeNumber() => null;
+        public int GenerateRandomMileage() => RndInt(200000);
 
-        private string RndString(int count)
+        private string RndCharString(int count)
         {
             var str = string.Empty;
             
             for (var i = 0; i < count; i++)
                 str += RndChar();
+
+            return str;
+        }
+        private string RndIntString(int count)
+        {
+            var str = string.Empty;
+            
+            for (var i = 0; i < count; i++)
+                str += RndInt(9);
 
             return str;
         }
