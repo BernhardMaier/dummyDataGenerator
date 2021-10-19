@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DummyDataGeneratorConsole
 {
-    public record Customer
+    public record Customer : ISqlEntity
     {
         public Guid Id { get; }
         public int Gender { get; }
@@ -46,6 +46,7 @@ namespace DummyDataGeneratorConsole
         public string AsInsertScript()
         {
             var sb = new StringBuilder();
+            
             sb.Append($"INSERT INTO [dbo].[Customers] ");
             sb.Append($"([Id],");
             sb.Append($"[Gender],");

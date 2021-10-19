@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DummyDataGeneratorConsole
 {
-    public record Connection
+    public record Connection : ISqlEntity
     {
         public Customer Customer { get; }
         public Vehicle Vehicle { get; }
@@ -34,6 +34,7 @@ namespace DummyDataGeneratorConsole
         public string AsInsertScript()
         {
             var sb = new StringBuilder();
+            
             sb.Append($"INSERT INTO [dbo].[Connections] ");
             sb.Append($"[CustomerId],");
             sb.Append($"[VehicleId])");
@@ -44,6 +45,5 @@ namespace DummyDataGeneratorConsole
 
             return sb.ToString();
         }
-
     }
 }
