@@ -7,7 +7,7 @@ namespace DummyDataGeneratorConsole
 {
     public partial class DummyDataGenerator : IDummyDataGenerator
     {
-        private const string VinPattern = @"^[a-zA-Z]{3}[0-9a-zA-Z]{6}[0-9a-zA-Z]{1}[0-9a-zA-Z]{1}[0-9a-zA-Z]{3}[0-9]{3}$";
+        private const string VinPattern = @"^[A-Z]{3}[0-9A-Z]{6}[0-9A-Z]{1}[0-9A-Z]{1}[0-9A-Z]{3}[0-9]{3}$";
         private readonly Random _random;
         private readonly IRandomizerString _vinGenerator;
         private readonly IRandomizerString _firstNameGenerator;
