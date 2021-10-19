@@ -19,14 +19,26 @@ namespace DummyDataGenerator.Console
         private Vehicle(IDummyDataGenerator ddg)
         {
             Id = ddg.GenerateRandomGuid();
-            Manufacturer = ddg.GenerateRandomManufacturer();
-            Model = ddg.GenerateRandomModel();
-            Mileage = ddg.GenerateRandomMileage();
+            
             LicensePlate = ddg.GenerateRandomLicensePlate();
             Vin = ddg.GenerateRandomVin();
-            Hsn = ddg.GenerateRandomHsn();
-            Tsn = ddg.GenerateRandomTsn();
-            KTypeNumber = ddg.GenerateRandomKTypeNumber();
+            
+            Manufacturer = ddg.RandomBoolean(75) ? ddg.GenerateRandomManufacturer() : string.Empty;
+            Model = ddg.RandomBoolean(75) ? ddg.GenerateRandomModel() : string.Empty;
+            Mileage = ddg.RandomBoolean(95) ? ddg.GenerateRandomMileage() : 0;
+
+            if (ddg.RandomBoolean(75))
+            {
+                Hsn = ddg.GenerateRandomHsn();
+                Tsn = ddg.GenerateRandomTsn();
+                KTypeNumber = ddg.GenerateRandomKTypeNumber();
+            }
+            else
+            {
+                Hsn = string.Empty;
+                Tsn = string.Empty;
+                KTypeNumber = string.Empty;
+            }
         }
 
         public static IEnumerable<Vehicle> CreateMany(int count, IDummyDataGenerator ddg)
@@ -65,7 +77,7 @@ namespace DummyDataGenerator.Console
             sb.Append(Environment.NewLine);
             sb.Append($"GO");
 
-            return sb.ToString();
+            return sb.ToString().Replace("''", "NULL");
         }
     }
 }

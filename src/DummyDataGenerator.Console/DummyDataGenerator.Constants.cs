@@ -4,7 +4,7 @@
     {
         private static readonly string[] Designations =
         {
-            null, null, null, null, null, null, null, null, "Dr.", "Prof."
+            "Dr.", "Prof."
         };
 
         private static readonly string[] Streets =
