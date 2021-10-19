@@ -59,7 +59,7 @@ namespace DummyDataGenerator.Console
             sb.Append($"[Phone],");
             sb.Append($"[Email])");
             sb.Append($" VALUES ");
-            sb.Append($"({Id},");
+            sb.Append($"('{Id}',");
             sb.Append($"{Gender},");
             sb.Append($"'{Designation}',");
             sb.Append($"'{FirstName}',");
@@ -70,7 +70,8 @@ namespace DummyDataGenerator.Console
             sb.Append($"'{City}',");
             sb.Append($"'{Phone}',");
             sb.Append($"'{Email}')");
-            sb.Append($" GO");
+            sb.Append(Environment.NewLine);
+            sb.Append($"GO");
 
             return sb.ToString();
         }
