@@ -1,7 +1,7 @@
 ﻿namespace DummyDataGenerator.Console
 {
-    public interface ISqlEntity
-    {
-        string AsInsertScript();
-    }
+  public interface ISqlEntity
+  {
+    string AsInsertScript();
+  }
 }
