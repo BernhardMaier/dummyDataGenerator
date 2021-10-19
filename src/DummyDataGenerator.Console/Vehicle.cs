@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DummyDataGeneratorConsole
+namespace DummyDataGenerator.Console
 {
     public record Vehicle : ISqlEntity
     {
         public Guid Id { get; }
-        public string Manufacturer { get; }
-        public string Model { get; }
-        public int Mileage { get; }
-        public string LicensePlate { get; }
-        public string Vin { get; }
-        public string Hsn { get; }
-        public string Tsn { get; }
-        public string KTypeNumber { get; }
+        private string Manufacturer { get; }
+        private string Model { get; }
+        private int Mileage { get; }
+        private string LicensePlate { get; }
+        private string Vin { get; }
+        private string Hsn { get; }
+        private string Tsn { get; }
+        private string KTypeNumber { get; }
 
-        public Vehicle(IDummyDataGenerator ddg)
+        private Vehicle(IDummyDataGenerator ddg)
         {
             Id = ddg.GenerateRandomGuid();
             Manufacturer = ddg.GenerateRandomManufacturer();

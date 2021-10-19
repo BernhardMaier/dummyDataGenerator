@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace DummyDataGeneratorConsole
+namespace DummyDataGenerator.Console
 {
     public static class SqlHandler
     {

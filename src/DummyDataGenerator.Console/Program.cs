@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace DummyDataGeneratorConsole
+namespace DummyDataGenerator.Console
 {
     public static class Program
     {
@@ -11,7 +11,7 @@ namespace DummyDataGeneratorConsole
             const string filename = "insertDummyData.sql";
             
             var path = Path.Combine(Directory.GetCurrentDirectory(), filename);
-            Console.WriteLine($"Script will be saved at '{path}'");
+            System.Console.WriteLine($"Script will be saved at '{path}'");
             
             RequestInput("Please enter a seed number (integer):", out var seed);
             RequestInput("Please enter how many customers/vehicles to generate (integer):", out var count);
@@ -24,21 +24,21 @@ namespace DummyDataGeneratorConsole
             var content = SqlHandler.CreateScript(customers, vehicles, connections);
             SqlHandler.SaveScript(path, content);
             
-            Console.WriteLine($"Used '{ddg.Seed}' as seed.");
-            Console.WriteLine($"Generated {customers.Count} customers, {vehicles.Count} vehicles and {connections.Count} connections.");
-            Console.WriteLine($"Script can be found at '{path}'");
+            System.Console.WriteLine($"Used '{ddg.Seed}' as seed.");
+            System.Console.WriteLine($"Generated {customers.Count} customers, {vehicles.Count} vehicles and {connections.Count} connections.");
+            System.Console.WriteLine($"Script can be found at '{path}'");
             
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey();
+            System.Console.WriteLine("Press any key to exit.");
+            System.Console.ReadKey();
         }
 
         private static void RequestInput(string message, out int inputVariable)
         {
-            Console.WriteLine(message);
-            var input = Console.ReadLine();
+            System.Console.WriteLine(message);
+            var input = System.Console.ReadLine();
             if (int.TryParse(input, out inputVariable)) return;
-            Console.WriteLine("Invalid input. Press any key to exit.");
-            Console.ReadKey();
+            System.Console.WriteLine("Invalid input. Press any key to exit.");
+            System.Console.ReadKey();
             Environment.Exit(1);
         }
     }
