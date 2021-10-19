@@ -21,16 +21,29 @@ namespace DummyDataGenerator.Console
         private Customer(IDummyDataGenerator ddg)
         {
             Id = ddg.GenerateRandomGuid();
+            
             Gender = ddg.GenerateRandomGender();
-            Designation = ddg.GenerateRandomDesignation();
+            Designation = ddg.RandomBoolean(10) ? ddg.GenerateRandomDesignation() : string.Empty;
             FirstName = ddg.GenerateRandomFirstName();
-            LastName = ddg.GenerateRandomLastName().Replace("'", "");
-            Street = ddg.GenerateRandomStreet();
-            HouseNumber = ddg.GenerateRandomHouseNumber();
-            Zip = ddg.GenerateRandomZip();
-            City = ddg.GenerateRandomCity();
-            Phone = ddg.GenerateRandomPhone();
-            Email = ddg.GenerateRandomEmail($"{FirstName}.{LastName}");
+            LastName = ddg.GenerateRandomLastName();
+
+            if (ddg.RandomBoolean(75))
+            {
+                Street = ddg.GenerateRandomStreet();
+                HouseNumber = ddg.GenerateRandomHouseNumber();
+                Zip = ddg.GenerateRandomZip();
+                City = ddg.GenerateRandomCity();
+            }
+            else
+            {
+                Street = string.Empty;
+                HouseNumber = string.Empty;
+                Zip = string.Empty;
+                City = string.Empty;
+            }
+            
+            Phone = ddg.RandomBoolean(75) ? ddg.GenerateRandomPhone() : string.Empty;
+            Email = ddg.RandomBoolean(75) ? ddg.GenerateRandomEmail($"{FirstName}.{LastName}") : string.Empty;
         }
 
         public static IEnumerable<Customer> CreateMany(int count, IDummyDataGenerator ddg)
@@ -61,7 +74,7 @@ namespace DummyDataGenerator.Console
             sb.Append($" VALUES ");
             sb.Append($"('{Id}',");
             sb.Append($"{Gender},");
-            sb.Append($"'{Designation}',".Replace("''", "NULL"));
+            sb.Append($"'{Designation}',");
             sb.Append($"'{FirstName}',");
             sb.Append($"'{LastName}',");
             sb.Append($"'{Street}',");
@@ -73,7 +86,7 @@ namespace DummyDataGenerator.Console
             sb.Append(Environment.NewLine);
             sb.Append($"GO");
 
-            return sb.ToString();
+            return sb.ToString().Replace("''", "NULL");
         }
     }
 }

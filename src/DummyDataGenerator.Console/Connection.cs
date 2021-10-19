@@ -53,7 +53,7 @@ namespace DummyDataGenerator.Console
             sb.Append(Environment.NewLine);
             sb.Append($"GO");
 
-            return sb.ToString();
+            return sb.ToString().Replace("''", "NULL");
         }
     }
 }

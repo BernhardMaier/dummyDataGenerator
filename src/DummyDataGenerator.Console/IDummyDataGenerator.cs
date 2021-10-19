@@ -25,5 +25,7 @@ namespace DummyDataGenerator.Console
         string GenerateRandomTsn();
         string GenerateRandomKTypeNumber();
         int GenerateRandomMileage();
+
+        bool RandomBoolean(byte probabilityForTrue = 50);
     }
 }
