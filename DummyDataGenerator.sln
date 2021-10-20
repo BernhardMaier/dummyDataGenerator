@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyDataGenerator", "src\DummyDataGenerator.Console\DummyDataGenerator.Console.csproj", "{4F23D110-D71B-4BC8-98AF-1036FFA7611B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyDataGenerator.Frontend", "src\DummyDataGenerator.Frontend\DummyDataGenerator.Frontend.csproj", "{4F23D110-D71B-4BC8-98AF-1036FFA7611B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
