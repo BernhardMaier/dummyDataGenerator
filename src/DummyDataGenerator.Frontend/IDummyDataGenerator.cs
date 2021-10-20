@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DummyDataGenerator.Console
+namespace DummyDataGenerator.Frontend
 {
   public interface IDummyDataGenerator
   {

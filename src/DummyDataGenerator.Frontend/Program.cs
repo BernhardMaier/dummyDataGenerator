@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace DummyDataGenerator.Console
+namespace DummyDataGenerator.Frontend
 {
   public static class Program
   {
