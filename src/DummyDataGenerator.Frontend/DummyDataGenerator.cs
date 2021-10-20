@@ -37,39 +37,31 @@ namespace DummyDataGenerator.Frontend
     public string GenerateRandomZip() => $"{RndIntString(5)}";
     public string GenerateRandomCity() => _cityGenerator.Generate();
     public string GenerateRandomPhone() => $"{RndIntString(5)} / {RndIntString(5)}";
-    public string GenerateRandomEmail(string name = null) =>
-      $"{name}@{RndCharString(RndInt(3, 5)).ToLower()}.{RndElement(TopLevelDomains)}";
-
+    public string GenerateRandomEmail(string name) => $"{name}@{RndCharString(3, 5).ToLower()}.{RndElement(TopLevelDomains)}";
     public string GenerateRandomManufacturer() => RndElement(Manufacturers);
-
     public string GenerateRandomModel() => RndElement(Models);
-    public string GenerateRandomLicensePlate() =>
-      $"{RndCharString(RndInt(1, 2))}-{RndCharString(RndInt(1, 2))} {RndInt(999)}";
+    public string GenerateRandomLicensePlate() => $"{RndCharString(1, 2)}-{RndCharString(1, 2)} {RndInt(999)}";
     public string GenerateRandomVin() => _vinGenerator.Generate();
     public string GenerateRandomHsn() => $"{RndIntString(4)}";
     public string GenerateRandomTsn() => $"{RndCharString(3)}{RndIntString(5)}";
     public string GenerateRandomKTypeNumber() => $"{RndIntString(5)}";
     public int GenerateRandomMileage() => RndInt(200000);
-
     public bool RandomBoolean(byte probabilityForTrue = 50) => RndInt(100) >= 100 - probabilityForTrue;
 
+    private string RndCharString(int min, int max) => RndCharString(RndInt(min, max));
     private string RndCharString(int count)
     {
       var str = string.Empty;
-
       for (var i = 0; i < count; i++)
         str += RndChar();
-
       return str;
     }
 
     private string RndIntString(int count)
     {
       var str = string.Empty;
-
       for (var i = 0; i < count; i++)
         str += RndInt(9);
-
       return str;
     }
 
