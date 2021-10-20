@@ -36,7 +36,7 @@ namespace DummyDataGenerator.Frontend
     public string GenerateRandomHouseNumber() => RndInt(100).ToString();
     public string GenerateRandomZip() => $"{RndIntString(5)}";
     public string GenerateRandomCity() => _cityGenerator.Generate();
-    public string GenerateRandomPhone() => $"{RndIntString(5)}/{RndIntString(5)}";
+    public string GenerateRandomPhone() => $"{RndIntString(5)} / {RndIntString(5)}";
     public string GenerateRandomEmail(string name = null) =>
       $"{name}@{RndCharString(RndInt(3, 5)).ToLower()}.{RndElement(TopLevelDomains)}";
 
