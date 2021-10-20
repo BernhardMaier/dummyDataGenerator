@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DummyDataGenerator.Frontend.Interfaces;
 using RandomDataGenerator.FieldOptions;
 using RandomDataGenerator.Randomizers;
 
