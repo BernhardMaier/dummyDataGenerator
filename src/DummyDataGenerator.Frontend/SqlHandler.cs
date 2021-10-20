@@ -23,6 +23,7 @@ namespace DummyDataGenerator.Frontend
       AddSqlEntities(script, customers, nameof(customers).ToUpper());
       AddSqlEntities(script, vehicles, nameof(vehicles).ToUpper());
       AddSqlEntities(script, connections, nameof(connections).ToUpper());
+      AddWorkaroundFooter(script);
 
       return script.ToArray();
     }
@@ -49,6 +50,18 @@ namespace DummyDataGenerator.Frontend
       script.Add(string.Empty);
     }
 
+    private static void AddWorkaroundFooter(ICollection<string> script)
+    {
+      script.Add("/*");
+      script.Add("#################################");
+      script.Add("## Workaround for ValueObjects ##");
+      script.Add("#################################");
+      script.Add("*/");
+      script.Add(string.Empty);
+      script.Add("UPDATE dbo.Vehicles SET Hsn = '', Tsn = '' WHERE Hsn is NULL and Tsn is NULL");
+      script.Add("GO");
+    }
+    
     public static void SaveScript(string path, string[] content)
     {
       File.WriteAllLines(path, content);
