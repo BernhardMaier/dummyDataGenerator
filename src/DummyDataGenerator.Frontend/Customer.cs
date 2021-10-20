@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DummyDataGenerator.Console
+namespace DummyDataGenerator.Frontend
 {
   public record Customer : ISqlEntity
   {

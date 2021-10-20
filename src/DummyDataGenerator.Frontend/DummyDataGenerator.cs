@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using RandomDataGenerator.FieldOptions;
 using RandomDataGenerator.Randomizers;
 
-namespace DummyDataGenerator.Console
+namespace DummyDataGenerator.Frontend
 {
   public partial class DummyDataGenerator : IDummyDataGenerator
   {
