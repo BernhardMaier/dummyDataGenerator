@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -11,7 +12,7 @@ namespace DummyDataGenerator.Frontend
       const string filename = "insertDummyData.sql";
 
       var path = Path.Combine(Directory.GetCurrentDirectory(), filename);
-      System.Console.WriteLine($"Script will be saved at '{path}'");
+      Console.WriteLine($"Script will be saved at '{path}'");
 
       RequestInput("Please enter a seed number (integer):", out var seed);
       RequestInput("Please enter how many customers/vehicles to generate (integer):", out var count);
@@ -24,23 +25,27 @@ namespace DummyDataGenerator.Frontend
       var content = SqlHandler.CreateScript(customers, vehicles, connections);
       SqlHandler.SaveScript(path, content);
 
-      System.Console.WriteLine($"Used '{ddg.Seed}' as seed.");
-      System.Console.WriteLine(
-        $"Generated {customers.Count} customers, {vehicles.Count} vehicles and {connections.Count} connections.");
-      System.Console.WriteLine($"Script can be found at '{path}'");
-
-      System.Console.WriteLine("Press any key to exit.");
-      System.Console.ReadKey();
+      PrintResult(ddg.Seed, customers.Count, vehicles.Count, connections.Count, path);
     }
 
     private static void RequestInput(string message, out int inputVariable)
     {
-      System.Console.WriteLine(message);
-      var input = System.Console.ReadLine();
+      Console.WriteLine(message);
+      var input = Console.ReadLine();
       if (int.TryParse(input, out inputVariable)) return;
-      System.Console.WriteLine("Invalid input. Press any key to exit.");
-      System.Console.ReadKey();
+      Console.WriteLine("Invalid input. Press any key to exit.");
+      Console.ReadKey();
       Environment.Exit(1);
     }
+
+    private static void PrintResult(int seed, int customers, int vehicles, int connections, string path)
+    {
+      Console.WriteLine($"Used '{seed}' as seed.");
+      Console.WriteLine($"Generated {customers} customers, {vehicles} vehicles and {connections} connections.");
+      Console.WriteLine($"Script can be found at '{path}'");
+      Console.WriteLine("Press any key to exit.");
+      Console.ReadKey();
+    }
+
   }
 }
