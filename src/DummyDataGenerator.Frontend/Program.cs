@@ -9,12 +9,13 @@ namespace DummyDataGenerator.Frontend
   {
     public static void Main()
     {
-      const string filename = "insertDummyData.sql";
-      var path = Path.Combine(Directory.GetCurrentDirectory(), filename);
+      const string filename = "insertDummyData";
+      const string extension = "sql";
 
       RequestInput("Please enter a seed number (integer):", out var seed);
       RequestInput("Please enter how many customers/vehicles to generate (integer):", out var count);
 
+      var path = Path.Combine(Directory.GetCurrentDirectory(), $"{filename}_{count}.{extension}");
       var ddg = new DummyDataGenerator(seed);
       var customers = Customer.CreateMany(count, ddg).ToList();
       var vehicles = Vehicle.CreateMany(count, ddg).ToList();
