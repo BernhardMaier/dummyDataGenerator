@@ -10,9 +10,7 @@ namespace DummyDataGenerator.Frontend
     public static void Main()
     {
       const string filename = "insertDummyData.sql";
-
       var path = Path.Combine(Directory.GetCurrentDirectory(), filename);
-      Console.WriteLine($"Script will be saved at '{path}'");
 
       RequestInput("Please enter a seed number (integer):", out var seed);
       RequestInput("Please enter how many customers/vehicles to generate (integer):", out var count);
