@@ -29,12 +29,14 @@ namespace DummyDataGenerator.Frontend
 
     private static void AddCommentHeader(ICollection<string> script, int customers, int vehicles, int connections)
     {
-      script.Add("-- ############");
-      script.Add($"-- # Creation date: {DateTime.Now}");
-      script.Add($"-- # Customers: {customers}");
-      script.Add($"-- # Vehicles: {vehicles}");
-      script.Add($"-- # Connections: {connections}");
-      script.Add("-- ############");
+      script.Add("/*");
+      script.Add("########################################");
+      script.Add($"# Creation date: {DateTime.Now}");
+      script.Add($"# Customers: {customers}");
+      script.Add($"# Vehicles: {vehicles}");
+      script.Add($"# Connections: {connections}");
+      script.Add("########################################");
+      script.Add("*/");
       script.Add(string.Empty);
     }
 
