@@ -66,9 +66,6 @@ namespace DummyDataGenerator.Backend
       Script.Add("GO");
     }
     
-    public void SaveScript()
-    {
-      File.WriteAllLines(FilePath, Script);
-    }
+    public void SaveScript() => File.WriteAllLines(FilePath, Script);
   }
 }
