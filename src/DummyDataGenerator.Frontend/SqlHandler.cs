@@ -6,9 +6,18 @@ using DummyDataGenerator.Frontend.Interfaces;
 
 namespace DummyDataGenerator.Frontend
 {
-  public static class SqlHandler
+  public class SqlHandler
   {
-    public static string[] CreateScript(
+    public string FilePath { get; }
+    public List<string> Script { get; }
+
+    public SqlHandler(string filePath)
+    {
+      FilePath = filePath;
+      Script = new List<string>();
+    }
+
+    public IEnumerable<string> CreateScript(
       IEnumerable<Customer> customers,
       IEnumerable<Vehicle> vehicles,
       IEnumerable<Connection> connections)
@@ -17,54 +26,52 @@ namespace DummyDataGenerator.Frontend
       vehicles = vehicles.ToList();
       connections = connections.ToList();
 
-      var script = new List<string>();
+      AddCommentHeader(customers.Count(), vehicles.Count(), connections.Count());
+      AddSqlEntities(customers, nameof(customers).ToUpper());
+      AddSqlEntities(vehicles, nameof(vehicles).ToUpper());
+      AddSqlEntities(connections, nameof(connections).ToUpper());
+      AddWorkaroundFooter();
 
-      AddCommentHeader(script, customers.Count(), vehicles.Count(), connections.Count());
-      AddSqlEntities(script, customers, nameof(customers).ToUpper());
-      AddSqlEntities(script, vehicles, nameof(vehicles).ToUpper());
-      AddSqlEntities(script, connections, nameof(connections).ToUpper());
-      AddWorkaroundFooter(script);
-
-      return script.ToArray();
+      return Script.ToArray();
     }
 
-    private static void AddCommentHeader(ICollection<string> script, int customers, int vehicles, int connections)
+    private void AddCommentHeader(int customers, int vehicles, int connections)
     {
-      script.Add("/*");
-      script.Add("########################################");
-      script.Add($"# Creation date: {DateTime.Now}");
-      script.Add($"# Customers: {customers}");
-      script.Add($"# Vehicles: {vehicles}");
-      script.Add($"# Connections: {connections}");
-      script.Add("########################################");
-      script.Add("*/");
-      script.Add(string.Empty);
+      Script.Add("/*");
+      Script.Add("########################################");
+      Script.Add($"# Creation date: {DateTime.Now}");
+      Script.Add($"# Customers: {customers}");
+      Script.Add($"# Vehicles: {vehicles}");
+      Script.Add($"# Connections: {connections}");
+      Script.Add("########################################");
+      Script.Add("*/");
+      Script.Add(string.Empty);
     }
 
-    private static void AddSqlEntities(ICollection<string> script, IEnumerable<ISqlEntity> list, string name)
+    private void AddSqlEntities(IEnumerable<ISqlEntity> list, string name)
     {
       list = list.ToList();
-      script.Add($"-- {name} ({list.Count()})");
+      Script.Add($"-- {name} ({list.Count()})");
       foreach (var element in list)
-        script.Add(element.AsInsertScript());
-      script.Add(string.Empty);
+        Script.Add(element.AsInsertScript());
+      Script.Add(string.Empty);
     }
 
-    private static void AddWorkaroundFooter(ICollection<string> script)
+    private void AddWorkaroundFooter()
     {
-      script.Add("/*");
-      script.Add("#################################");
-      script.Add("## Workaround for ValueObjects ##");
-      script.Add("#################################");
-      script.Add("*/");
-      script.Add(string.Empty);
-      script.Add("UPDATE dbo.Vehicles SET Hsn = '', Tsn = '' WHERE Hsn is NULL and Tsn is NULL");
-      script.Add("GO");
+      Script.Add("/*");
+      Script.Add("#################################");
+      Script.Add("## Workaround for ValueObjects ##");
+      Script.Add("#################################");
+      Script.Add("*/");
+      Script.Add(string.Empty);
+      Script.Add("UPDATE dbo.Vehicles SET Hsn = '', Tsn = '' WHERE Hsn is NULL and Tsn is NULL");
+      Script.Add("GO");
     }
     
-    public static void SaveScript(string path, string[] content)
+    public void SaveScript()
     {
-      File.WriteAllLines(path, content);
+      File.WriteAllLines(FilePath, Script);
     }
   }
 }
