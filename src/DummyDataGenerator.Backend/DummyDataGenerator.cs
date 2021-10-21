@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using DummyDataGenerator.Frontend.Interfaces;
+using DummyDataGenerator.Backend.Interfaces;
 using RandomDataGenerator.FieldOptions;
 using RandomDataGenerator.Randomizers;
 
-namespace DummyDataGenerator.Frontend
+namespace DummyDataGenerator.Backend
 {
   public partial class DummyDataGenerator : IDummyDataGenerator
   {

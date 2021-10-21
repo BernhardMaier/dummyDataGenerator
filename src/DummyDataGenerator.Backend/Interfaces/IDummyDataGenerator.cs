@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DummyDataGenerator.Frontend.Interfaces
+namespace DummyDataGenerator.Backend.Interfaces
 {
   public interface IDummyDataGenerator
   {

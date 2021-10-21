@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DummyDataGenerator.Frontend.Interfaces;
+using DummyDataGenerator.Backend.Interfaces;
 
-namespace DummyDataGenerator.Frontend
+namespace DummyDataGenerator.Backend
 {
   public record Customer : ISqlEntity
   {
