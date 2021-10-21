@@ -1,46 +1,48 @@
 using System;
+using System.Linq;
 using FluentAssertions;
 using Xunit;
 
 namespace DummyDataGenerator.Backend.Test
 {
-  public class VehicleTests
+  public class SqlScriptGeneratorTests
   {
     private const int Seed = 1;
+    private const string FilePath = "testPath";
     
-    public class WhenCreatingInsertScript
+    public class WhenInstantiating
     {
       [Fact]
-      public void TheCreatedScriptStartsWithTheCorrectLine()
+      public void TheNewObjectHoldsAnEmptyList()
       {
-        var ddg = new DummyDataGenerator(Seed);
-        var vehicle = new Vehicle(ddg);
-        var script = vehicle.AsInsertScript();
+        var ssc = new SqlScriptCreator(FilePath);
 
-        script.Should().StartWith("INSERT INTO [dbo].[Vehicles] ");
+        ssc.Script.Should().HaveCount(0);
       }
-      
-      [Fact]
-      public void TheCreatedScriptEndsWithTheCorrectLine()
-      {
-        var ddg = new DummyDataGenerator(Seed);
-        var vehicle = new Vehicle(ddg);
-        var script = vehicle.AsInsertScript();
 
-        script.Should().EndWith("GO");
+      [Fact]
+      public void TheNewObjectHoldsTheCorrectPath()
+      {
+        var ssc = new SqlScriptCreator(FilePath);
+
+        ssc.FilePath.Should().Be(FilePath);
       }
     }
-
-    public class WhenCreatingMany
+    
+    public class WhenCreatingTheScript
     {
       [Fact]
-      public void TheReturnedListContainsCorrectAmountOfInstances()
+      public void TheScriptPropertyIsNotEmpty()
       {
-        const int count = 10;
+        const int count = 100;
         var ddg = new DummyDataGenerator(Seed);
-        var vehicles = Vehicle.CreateMany(count, ddg);
+        var customers = Customer.CreateMany(count, ddg).ToArray();
+        var vehicles = Vehicle.CreateMany(count, ddg).ToArray();
+        var connections = Connection.CreateMany(customers, vehicles);
+        var ssc = new SqlScriptCreator(FilePath);
+        ssc.CreateScript(customers, vehicles, connections);
 
-        vehicles.Should().HaveCount(count);
+        ssc.Script.Should().HaveCount(298);
       }
     }
   }
