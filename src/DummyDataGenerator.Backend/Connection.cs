@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using DummyDataGenerator.Backend.Interfaces;
 
+[assembly: InternalsVisibleTo("DummyDataGenerator.Backend.Test")]
 namespace DummyDataGenerator.Backend
 {
   public record Connection : ISqlEntity
   {
-    private Connection(Customer customer, Vehicle vehicle)
+    internal Connection(Customer customer, Vehicle vehicle)
     {
       Customer = customer;
       Vehicle = vehicle;

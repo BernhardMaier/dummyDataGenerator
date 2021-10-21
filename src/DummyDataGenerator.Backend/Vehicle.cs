@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using DummyDataGenerator.Backend.Interfaces;
 
+[assembly: InternalsVisibleTo("DummyDataGenerator.Backend.Test")]
 namespace DummyDataGenerator.Backend
 {
   public record Vehicle : ISqlEntity
   {
-    private Vehicle(IDummyDataGenerator ddg)
+    internal Vehicle(IDummyDataGenerator ddg)
     {
       Id = ddg.GenerateRandomGuid();
 
