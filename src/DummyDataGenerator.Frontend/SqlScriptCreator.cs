@@ -6,12 +6,12 @@ using DummyDataGenerator.Frontend.Interfaces;
 
 namespace DummyDataGenerator.Frontend
 {
-  public class SqlHandler
+  public class SqlScriptCreator
   {
     public string FilePath { get; }
     public List<string> Script { get; }
 
-    public SqlHandler(string filePath)
+    public SqlScriptCreator(string filePath)
     {
       FilePath = filePath;
       Script = new List<string>();
