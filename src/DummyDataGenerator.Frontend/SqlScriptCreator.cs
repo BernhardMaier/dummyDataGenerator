@@ -17,8 +17,7 @@ namespace DummyDataGenerator.Frontend
       Script = new List<string>();
     }
 
-    public IEnumerable<string> CreateScript(
-      IEnumerable<Customer> customers,
+    public void CreateScript(IEnumerable<Customer> customers,
       IEnumerable<Vehicle> vehicles,
       IEnumerable<Connection> connections)
     {
@@ -31,8 +30,6 @@ namespace DummyDataGenerator.Frontend
       AddSqlEntities(vehicles, nameof(vehicles).ToUpper());
       AddSqlEntities(connections, nameof(connections).ToUpper());
       AddWorkaroundFooter();
-
-      return Script.ToArray();
     }
 
     private void AddCommentHeader(int customers, int vehicles, int connections)
