@@ -1,4 +1,4 @@
-﻿namespace DummyDataGenerator.Frontend
+﻿namespace DummyDataGenerator.Backend
 {
   public partial class DummyDataGenerator
   {

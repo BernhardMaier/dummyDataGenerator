@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DummyDataGenerator.Backend;
 
 namespace DummyDataGenerator.Frontend
 {
@@ -17,7 +17,7 @@ namespace DummyDataGenerator.Frontend
 
       var filePath = Path.Combine(Directory.GetCurrentDirectory(), $"{filename}_{count}.{extension}");
       var ssc = new SqlScriptCreator(filePath);
-      var ddg = new DummyDataGenerator(seed);
+      var ddg = new Backend.DummyDataGenerator(seed);
       
       var customers = Customer.CreateMany(count, ddg).ToList();
       var vehicles = Vehicle.CreateMany(count, ddg).ToList();

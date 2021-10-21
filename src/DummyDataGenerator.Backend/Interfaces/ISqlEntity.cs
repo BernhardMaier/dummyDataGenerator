@@ -1,4 +1,4 @@
-﻿namespace DummyDataGenerator.Frontend.Interfaces
+﻿namespace DummyDataGenerator.Backend.Interfaces
 {
   public interface ISqlEntity
   {

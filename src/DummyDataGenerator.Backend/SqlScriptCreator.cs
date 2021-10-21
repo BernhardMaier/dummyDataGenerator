@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using DummyDataGenerator.Frontend.Interfaces;
+using DummyDataGenerator.Backend.Interfaces;
 
-namespace DummyDataGenerator.Frontend
+namespace DummyDataGenerator.Backend
 {
   public class SqlScriptCreator
   {
