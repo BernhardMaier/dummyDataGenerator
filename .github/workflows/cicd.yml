@@ -7,8 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  buildAndTest:
-    name: Build and test
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,16 +16,24 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - uses: actions/cache@v2
-      name: Caching
-      with:
-        path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget-
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Cache build
+      uses: actions/cache@v2
+      with:
+        path: ./*
+        key: ${{ github.sha }}
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    steps:
+    - name: Restore build
+      uses: actions/cache@v2
+      with:
+        path: ./*
+        key: ${{ github.sha }}
     - name: Test
       run: dotnet test --no-build --verbosity normal
