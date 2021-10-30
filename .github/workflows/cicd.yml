@@ -21,21 +21,25 @@ jobs:
         dotnet-version: ${{ env.NODEVERSION }}
     - name: Restore dependencies
       run: dotnet restore
-    - name: Cache dependecies
+    - name: Cache dependencies
       uses: actions/cache@v2
       with:
-        path: ./*
-        key: ${{ github.sha }}-deps
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
   build:
     name: Build
     runs-on: ubuntu-latest
     needs: [ restore ]
     steps:
-    - name: Restore dependecies
+    - name: Restore dependencies
       uses: actions/cache@v2
       with:
-        path: ./*
-        key: ${{ github.sha }}-deps
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
     - name: Build
       run: dotnet build --no-restore
     - name: Cache build
