@@ -29,6 +29,13 @@ jobs:
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget-
+    - name: Cache working directory
+      uses: actions/cache@v2
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -48,7 +55,7 @@ jobs:
     - name: Cache build
       uses: actions/cache@v2
       with:
-        path: ./*
+        path: ~/*
         key: ${{ github.sha }}-build
   test:
     name: Test
@@ -58,7 +65,7 @@ jobs:
     - name: Restore build
       uses: actions/cache@v2
       with:
-        path: ./*
+        path: ~/*
         key: ${{ github.sha }}-build
     - name: Test
       run: dotnet test --no-build --verbosity normal
