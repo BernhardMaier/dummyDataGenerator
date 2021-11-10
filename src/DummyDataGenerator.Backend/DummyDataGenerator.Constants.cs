@@ -27,7 +27,7 @@
 
     private static readonly string[] Models =
     {
-      "E-Klasse", "Passat", "Insignia", "Up", "Polo", "Golf"
+      "E-Klasse", "Passat", "Insignia", "Up", "Polo", "Golf", "Punto", "Escort", "Mondeo", "Fiesta", "A-Klasse"
     };
   }
 }

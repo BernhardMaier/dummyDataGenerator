@@ -38,6 +38,7 @@ namespace DummyDataGenerator.Backend
     public string GenerateRandomCity() => _cityGenerator.Generate();
     public string GenerateRandomPhone() => $"{RndIntString(5)} / {RndIntString(5)}";
     public string GenerateRandomEmail(string name) => $"{name}@{RndCharString(3, 5).ToLower()}.{RndElement(TopLevelDomains)}";
+    public int GenerateRandomTimeForPaymentInDays() => RndInt(0, 30);
     public string GenerateRandomManufacturer() => RndElement(Manufacturers);
     public string GenerateRandomModel() => RndElement(Models);
     public string GenerateRandomLicensePlate() => $"{RndCharString(1, 2)}-{RndCharString(1, 2)} {RndInt(999)}";

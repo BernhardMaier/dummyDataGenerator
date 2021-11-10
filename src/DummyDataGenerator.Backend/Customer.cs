@@ -35,6 +35,7 @@ namespace DummyDataGenerator.Backend
 
       Phone = ddg.RandomBoolean(75) ? ddg.GenerateRandomPhone() : string.Empty;
       Email = ddg.RandomBoolean(75) ? ddg.GenerateRandomEmail($"{FirstName}.{LastName}") : string.Empty;
+      TimeForPaymentInDays = ddg.GenerateRandomTimeForPaymentInDays();
     }
 
     public Guid Id { get; }
@@ -48,6 +49,7 @@ namespace DummyDataGenerator.Backend
     private string City { get; }
     private string Phone { get; }
     private string Email { get; }
+    private int TimeForPaymentInDays { get; }
 
     public string AsInsertScript()
     {
@@ -64,7 +66,8 @@ namespace DummyDataGenerator.Backend
       sb.Append("[Zip],");
       sb.Append("[City],");
       sb.Append("[Phone],");
-      sb.Append("[Email])");
+      sb.Append("[Email],");
+      sb.Append("[TimeForPaymentInDays])");
       sb.Append(" VALUES ");
       sb.Append($"('{Id}',");
       sb.Append($"{Gender},");
@@ -76,7 +79,8 @@ namespace DummyDataGenerator.Backend
       sb.Append($"'{Zip}',");
       sb.Append($"'{City}',");
       sb.Append($"'{Phone}',");
-      sb.Append($"'{Email}')");
+      sb.Append($"'{Email}',");
+      sb.Append($"{TimeForPaymentInDays})");
       sb.Append(Environment.NewLine);
       sb.Append("GO");
 
