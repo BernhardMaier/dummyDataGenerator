@@ -17,7 +17,7 @@ namespace DummyDataGenerator.Backend.Test
         var customer = new Customer(ddg);
         var script = customer.AsInsertScript();
 
-        script.Should().StartWith("INSERT INTO [dbo].[Customers] ");
+        script.Should().StartWith("INSERT INTO [dbo].[Customers] (");
       }
       
       [Fact]
@@ -27,7 +27,8 @@ namespace DummyDataGenerator.Backend.Test
         var customer = new Customer(ddg);
         var script = customer.AsInsertScript();
 
-        script.Should().EndWith("GO");
+        script.Should().EndWith($"){Environment.NewLine}GO");
+        script.Should().NotEndWith($",){Environment.NewLine}GO");
       }
     }
 
