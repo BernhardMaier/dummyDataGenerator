@@ -1,33 +1,33 @@
 ﻿namespace DummyDataGenerator.Backend
 {
-  public partial class DummyDataGenerator
+  internal static class Constants
   {
-    private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    private static readonly string[] Designations =
+    internal static readonly string[] Designations =
     {
       "Dr.", "Prof."
     };
 
-    private static readonly string[] Streets =
+    internal static readonly string[] Streets =
     {
       "Hauptstr.", "Mühlweg", "Am Graben", "Auf dem Kirchberg", "An der Mark", "Herrenberger Str.", "Kniebisweg",
       "Max-Eyth-Str.", "Kirchweg", "Brunnengasse", "Im Gässle"
     };
 
-    private static readonly string[] TopLevelDomains =
+    internal static readonly string[] TopLevelDomains =
     {
       "de", "com", "net", "org"
     };
 
-    private static readonly string[] Manufacturers =
+    internal static readonly string[] Manufacturers =
     {
       "Mercedes", "VW", "Opel", "BMW", "Audi", "Fiat", "Porsche", "Jaguar", "Volvo", "Ford"
     };
 
-    private static readonly string[] Models =
+    internal static readonly string[] Models =
     {
       "E-Klasse", "Passat", "Insignia", "Up", "Polo", "Golf", "Punto", "Escort", "Mondeo", "Fiesta", "A-Klasse"
     };
+
+    internal const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   }
 }
