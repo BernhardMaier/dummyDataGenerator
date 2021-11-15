@@ -15,7 +15,7 @@ namespace DummyDataGenerator.Backend.Interfaces
     string GenerateRandomZip();
     string GenerateRandomCity();
     string GenerateRandomPhone();
-    string GenerateRandomEmail(string name = null);
+    string GenerateRandomEmail(string name);
     int GenerateRandomTimeForPaymentInDays();
 
     string GenerateRandomManufacturer();
