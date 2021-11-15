@@ -6,14 +6,14 @@ using RandomDataGenerator.Randomizers;
 
 namespace DummyDataGenerator.Backend
 {
-  public partial class DummyDataGenerator : IDummyDataGenerator
+  public class DummyDataGenerator : IDummyDataGenerator
   {
+    private readonly Random _random;
     private const string VinPattern = @"^[A-Z]{3}[0-9A-Z]{6}[0-9A-Z]{1}[0-9A-Z]{1}[0-9A-Z]{3}[0-9]{3}$";
-    private readonly IRandomizerString _cityGenerator;
+    private readonly IRandomizerString _vinGenerator;
     private readonly IRandomizerString _firstNameGenerator;
     private readonly IRandomizerString _lastNameGenerator;
-    private readonly Random _random;
-    private readonly IRandomizerString _vinGenerator;
+    private readonly IRandomizerString _cityGenerator;
 
     public DummyDataGenerator(int seed)
     {
@@ -29,18 +29,18 @@ namespace DummyDataGenerator.Backend
 
     public Guid GenerateRandomGuid() => Guid.NewGuid();
     public int GenerateRandomGender() => RndInt(2);
-    public string GenerateRandomDesignation() => RndElement(Designations);
+    public string GenerateRandomDesignation() => RndElement(Constants.Designations);
     public string GenerateRandomFirstName() => _firstNameGenerator.Generate();
     public string GenerateRandomLastName() => _lastNameGenerator.Generate().Replace("'", "");
-    public string GenerateRandomStreet() => RndElement(Streets);
+    public string GenerateRandomStreet() => RndElement(Constants.Streets);
     public string GenerateRandomHouseNumber() => RndInt(100).ToString();
     public string GenerateRandomZip() => $"{RndIntString(5)}";
     public string GenerateRandomCity() => _cityGenerator.Generate();
     public string GenerateRandomPhone() => $"{RndIntString(5)} / {RndIntString(5)}";
-    public string GenerateRandomEmail(string name) => $"{name}@{RndCharString(3, 5).ToLower()}.{RndElement(TopLevelDomains)}";
+    public string GenerateRandomEmail(string name) => $"{name}@{RndCharString(3, 5).ToLower()}.{RndElement(Constants.TopLevelDomains)}";
     public int GenerateRandomTimeForPaymentInDays() => RndInt(0, 30);
-    public string GenerateRandomManufacturer() => RndElement(Manufacturers);
-    public string GenerateRandomModel() => RndElement(Models);
+    public string GenerateRandomManufacturer() => RndElement(Constants.Manufacturers);
+    public string GenerateRandomModel() => RndElement(Constants.Models);
     public string GenerateRandomLicensePlate() => $"{RndCharString(1, 2)}-{RndCharString(1, 2)} {RndInt(999)}";
     public string GenerateRandomVin() => _vinGenerator.Generate();
     public string GenerateRandomHsn() => $"{RndIntString(4)}";
@@ -66,7 +66,7 @@ namespace DummyDataGenerator.Backend
       return str;
     }
 
-    private char RndChar() => Chars[RndInt(0, Chars.Length)];
+    private char RndChar() => Constants.Chars[RndInt(0, Constants.Chars.Length)];
     private string RndElement(IReadOnlyList<string> array) => array[RndInt(array.Count)];
     private int RndInt(int max) => RndInt(0, max);
     private int RndInt(int min, int max) => _random.Next() % max + min;
