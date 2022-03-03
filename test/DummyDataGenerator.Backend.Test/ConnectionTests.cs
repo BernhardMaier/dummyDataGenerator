@@ -32,7 +32,8 @@ namespace DummyDataGenerator.Backend.Test
         var connection = new Connection(customer, vehicle);
         var script = connection.AsInsertScript();
 
-        script.Should().EndWith("GO");
+        script.Should().EndWith(")");
+        script.Should().NotEndWith(",)");
       }
     }
 

@@ -27,7 +27,8 @@ namespace DummyDataGenerator.Backend.Test
         var vehicle = new Vehicle(ddg);
         var script = vehicle.AsInsertScript();
 
-        script.Should().EndWith("GO");
+        script.Should().EndWith(")");
+        script.Should().NotEndWith(",)");
       }
     }
 

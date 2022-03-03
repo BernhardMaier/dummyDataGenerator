@@ -27,8 +27,8 @@ namespace DummyDataGenerator.Backend.Test
         var customer = new Customer(ddg);
         var script = customer.AsInsertScript();
 
-        script.Should().EndWith($"){Environment.NewLine}GO");
-        script.Should().NotEndWith($",){Environment.NewLine}GO");
+        script.Should().EndWith(")");
+        script.Should().NotEndWith(",)");
       }
     }
 

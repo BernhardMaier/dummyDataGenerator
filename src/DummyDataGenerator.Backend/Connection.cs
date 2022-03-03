@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using DummyDataGenerator.Backend.Interfaces;
@@ -28,8 +27,6 @@ namespace DummyDataGenerator.Backend
       sb.Append(" VALUES ");
       sb.Append($"('{Customer.Id}',");
       sb.Append($"'{Vehicle.Id}')");
-      sb.Append(Environment.NewLine);
-      sb.Append("GO");
 
       return sb.ToString().Replace("''", "NULL");
     }

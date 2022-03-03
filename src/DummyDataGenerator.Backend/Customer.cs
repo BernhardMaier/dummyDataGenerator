@@ -81,8 +81,6 @@ namespace DummyDataGenerator.Backend
       sb.Append($"'{Phone}',");
       sb.Append($"'{Email}',");
       sb.Append($"{TimeForPaymentInDays})");
-      sb.Append(Environment.NewLine);
-      sb.Append("GO");
 
       return sb.ToString().Replace("''", "NULL");
     }
