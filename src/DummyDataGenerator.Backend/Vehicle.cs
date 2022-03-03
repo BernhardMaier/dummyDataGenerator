@@ -68,8 +68,6 @@ namespace DummyDataGenerator.Backend
       sb.Append($"'{Tsn}',");
       sb.Append($"'{KTypeNumber}',");
       sb.Append($"{Mileage})");
-      sb.Append(Environment.NewLine);
-      sb.Append("GO");
 
       return sb.ToString().Replace("''", "NULL");
     }
