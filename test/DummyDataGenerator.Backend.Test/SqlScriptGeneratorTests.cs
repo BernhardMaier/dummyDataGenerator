@@ -41,7 +41,7 @@ namespace DummyDataGenerator.Backend.Test
         var ssc = new SqlScriptCreator(FilePath);
         ssc.CreateScript(customers, vehicles, connections);
 
-        ssc.Script.Should().HaveCount(298);
+        ssc.Script.Should().HaveCount(290);
       }
     }
   }
