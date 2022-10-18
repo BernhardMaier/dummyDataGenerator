@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
+using DummyDataGenerator.Backend.Extensions;
 using DummyDataGenerator.Backend.Interfaces;
 
 [assembly: InternalsVisibleTo("DummyDataGenerator.Backend.Test")]
@@ -13,11 +15,21 @@ namespace DummyDataGenerator.Backend
     {
       Id = ddg.GenerateRandomGuid();
 
-      Gender = ddg.GenerateRandomGender();
-      Designation = ddg.RandomBoolean(10) ? ddg.GenerateRandomDesignation() : string.Empty;
-      FirstName = ddg.GenerateRandomFirstName();
-      LastName = ddg.GenerateRandomLastName();
-
+      string nameForEmail;
+      if (ddg.RandomBoolean(90))
+      {
+        Gender = ddg.GenerateRandomGender();
+        Designation = ddg.RandomBoolean(10) ? ddg.GenerateRandomDesignation() : string.Empty;
+        FirstName = ddg.GenerateRandomFirstName();
+        LastName = ddg.GenerateRandomLastName();
+        nameForEmail = $"{FirstName}.{LastName}";
+      }
+      else
+      {
+        OrganizationName = ddg.GenerateRandomOrganizationName();
+        nameForEmail = Regex.Replace(OrganizationName, "[ .&]", "");
+      }
+      
       if (ddg.RandomBoolean(75))
       {
         Street = ddg.GenerateRandomStreet();
@@ -25,31 +37,29 @@ namespace DummyDataGenerator.Backend
         Zip = ddg.GenerateRandomZip();
         City = ddg.GenerateRandomCity();
       }
-      else
-      {
-        Street = string.Empty;
-        HouseNumber = string.Empty;
-        Zip = string.Empty;
-        City = string.Empty;
-      }
 
-      Phone = ddg.RandomBoolean(75) ? ddg.GenerateRandomPhone() : string.Empty;
-      Email = ddg.RandomBoolean(75) ? ddg.GenerateRandomEmail($"{FirstName}.{LastName}") : string.Empty;
+      if (ddg.RandomBoolean(75)) Phone = ddg.GenerateRandomPhone();
+      if (ddg.RandomBoolean(75)) Email = ddg.GenerateRandomEmail(nameForEmail);
+
       TimeForPaymentInDays = ddg.GenerateRandomTimeForPaymentInDays();
+
+      if (ddg.RandomBoolean(25)) Notice = ddg.GenerateRandomNotice();
     }
 
     public Guid Id { get; }
-    private int Gender { get; }
-    private string Designation { get; }
-    private string FirstName { get; }
-    private string LastName { get; }
-    private string Street { get; }
-    private string HouseNumber { get; }
-    private string Zip { get; }
-    private string City { get; }
-    private string Phone { get; }
-    private string Email { get; }
-    private int TimeForPaymentInDays { get; }
+    public int Gender { get; }
+    public string Designation { get; } = string.Empty;
+    public string FirstName { get; } = string.Empty;
+    public string LastName { get; } = string.Empty;
+    public string OrganizationName { get; } = string.Empty;
+    public string Street { get; } = string.Empty;
+    public string HouseNumber { get; } = string.Empty;
+    public string Zip { get; } = string.Empty;
+    public string City { get; } = string.Empty;
+    public string Phone { get; } = string.Empty;
+    public string Email { get; } = string.Empty;
+    public int TimeForPaymentInDays { get; }
+    public string Notice { get; } = string.Empty;
 
     public string AsInsertScript()
     {
@@ -61,28 +71,32 @@ namespace DummyDataGenerator.Backend
       sb.Append("[Designation],");
       sb.Append("[FirstName],");
       sb.Append("[LastName],");
+      sb.Append("[OrganizationName],");
       sb.Append("[Street],");
       sb.Append("[HouseNumber],");
       sb.Append("[Zip],");
       sb.Append("[City],");
       sb.Append("[Phone],");
       sb.Append("[Email],");
-      sb.Append("[TimeForPaymentInDays])");
+      sb.Append("[TimeForPaymentInDays],");
+      sb.Append("[Notice])");
       sb.Append(" VALUES ");
       sb.Append($"('{Id}',");
       sb.Append($"{Gender},");
-      sb.Append($"'{Designation}',");
-      sb.Append($"'{FirstName}',");
-      sb.Append($"'{LastName}',");
-      sb.Append($"'{Street}',");
-      sb.Append($"'{HouseNumber}',");
-      sb.Append($"'{Zip}',");
-      sb.Append($"'{City}',");
-      sb.Append($"'{Phone}',");
-      sb.Append($"'{Email}',");
-      sb.Append($"{TimeForPaymentInDays})");
+      sb.Append($"{Designation.ToNullableSqlString()},");
+      sb.Append($"{FirstName.ToNullableSqlString()},");
+      sb.Append($"{LastName.ToNullableSqlString()},");
+      sb.Append($"{OrganizationName.ToNullableSqlString()},");
+      sb.Append($"{Street.ToNullableSqlString()},");
+      sb.Append($"{HouseNumber.ToNullableSqlString()},");
+      sb.Append($"{Zip.ToNullableSqlString()},");
+      sb.Append($"{City.ToNullableSqlString()},");
+      sb.Append($"{Phone.ToNullableSqlString()},");
+      sb.Append($"{Email.ToNullableSqlString()},");
+      sb.Append($"{TimeForPaymentInDays},");
+      sb.Append($"{Notice.ToNullableSqlString()})");
 
-      return sb.ToString().Replace("''", "NULL");
+      return sb.ToString();
     }
 
     public static IEnumerable<Customer> CreateMany(int count, IDummyDataGenerator ddg)

@@ -20,12 +20,18 @@
 
     internal static readonly string[] Manufacturers =
     {
-      "Mercedes", "VW", "Opel", "BMW", "Audi", "Fiat", "Porsche", "Jaguar", "Volvo", "Ford"
+      "Mercedes", "VW", "Opel", "BMW", "Audi", "Fiat", "Porsche", "Jaguar", "Volvo", "Ford", "KIA", "Seat", "Tesla"
     };
 
     internal static readonly string[] Models =
     {
-      "E-Klasse", "Passat", "Insignia", "Up", "Polo", "Golf", "Punto", "Escort", "Mondeo", "Fiesta", "A-Klasse"
+      "E-Klasse", "Passat", "Insignia", "Up", "Polo", "Golf", "Punto", "Escort", "Mondeo", "Fiesta", "A-Klasse",
+      "Ibiza", "Kadett", "Viano", "Model S", "Leon", "A1", "A2", "A3", "A4"
+    };
+
+    internal static readonly string[] CompanyTypes =
+    {
+      "GmbH", "GbR", "AG", "GmbH & Co. KG"
     };
 
     internal const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
