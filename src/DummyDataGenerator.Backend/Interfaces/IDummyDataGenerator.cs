@@ -10,6 +10,7 @@ namespace DummyDataGenerator.Backend.Interfaces
     string GenerateRandomDesignation();
     string GenerateRandomFirstName();
     string GenerateRandomLastName();
+    string GenerateRandomOrganizationName();
     string GenerateRandomStreet();
     string GenerateRandomHouseNumber();
     string GenerateRandomZip();
@@ -25,7 +26,13 @@ namespace DummyDataGenerator.Backend.Interfaces
     string GenerateRandomHsn();
     string GenerateRandomTsn();
     string GenerateRandomKTypeNumber();
+    string GenerateRandomEngineCode();
+    string GenerateRandomColorNumber();
+    string GenerateRandomNextMainInspection();
+    string GenerateRandomInitialRegistration();
     int GenerateRandomMileage();
+
+    string GenerateRandomNotice();
 
     bool RandomBoolean(byte probabilityForTrue = 50);
   }

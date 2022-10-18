@@ -29,7 +29,7 @@ namespace DummyDataGenerator.Backend
       AddSqlEntities(customers, nameof(customers).ToUpper());
       AddSqlEntities(vehicles, nameof(vehicles).ToUpper());
       AddSqlEntities(connections, nameof(connections).ToUpper());
-      AddWorkaroundFooter();
+      //AddWorkaroundFooter();
     }
 
     private void AddCommentHeader(int customers, int vehicles, int connections)

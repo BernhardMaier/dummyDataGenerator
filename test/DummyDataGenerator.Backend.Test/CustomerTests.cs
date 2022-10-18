@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace DummyDataGenerator.Backend.Test
 {
@@ -9,6 +10,11 @@ namespace DummyDataGenerator.Backend.Test
     
     public class WhenCreatingInsertScript
     {
+      private readonly ITestOutputHelper _testOutputHelper;
+
+      public WhenCreatingInsertScript(ITestOutputHelper testOutputHelper) =>
+        _testOutputHelper = testOutputHelper;
+
       [Fact]
       public void TheCreatedScriptStartsWithTheCorrectLine()
       {
@@ -17,6 +23,7 @@ namespace DummyDataGenerator.Backend.Test
         var script = customer.AsInsertScript();
 
         script.Should().StartWith("INSERT INTO [dbo].[Customers] (");
+        _testOutputHelper.WriteLine(script);
       }
       
       [Fact]
@@ -28,6 +35,7 @@ namespace DummyDataGenerator.Backend.Test
 
         script.Should().EndWith(")");
         script.Should().NotEndWith(",)");
+        _testOutputHelper.WriteLine(script);
       }
     }
 
