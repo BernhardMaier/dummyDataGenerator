@@ -54,18 +54,6 @@ namespace DummyDataGenerator.Backend
       Script.Add(string.Empty);
     }
 
-    private void AddWorkaroundFooter()
-    {
-      Script.Add("/*");
-      Script.Add("#################################");
-      Script.Add("## Workaround for ValueObjects ##");
-      Script.Add("#################################");
-      Script.Add("*/");
-      Script.Add(string.Empty);
-      Script.Add("UPDATE dbo.Vehicles SET Hsn = '', Tsn = '' WHERE Hsn is NULL and Tsn is NULL");
-      Script.Add("GO");
-    }
-    
     public void SaveScript() => File.WriteAllLines(FilePath, Script);
   }
 }
