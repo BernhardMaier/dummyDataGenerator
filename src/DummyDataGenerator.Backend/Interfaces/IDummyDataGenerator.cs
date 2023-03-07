@@ -27,12 +27,30 @@ namespace DummyDataGenerator.Backend.Interfaces
     string GenerateRandomTsn();
     string GenerateRandomKTypeNumber();
     string GenerateRandomEngineCode();
+    string GenerateRandomEngineNumber();
     string GenerateRandomColorNumber();
     string GenerateRandomNextMainInspection();
     string GenerateRandomInitialRegistration();
     int GenerateRandomMileage();
 
     string GenerateRandomNotice();
+
+    int GenerateRandomTaxRateRate();
+    string GenerateRandomTaxRateDescription();
+    string GenerateRandomTaxRateAccountNumber();
+    string GenerateRandomTaxRateTaxCode();
+
+    string GenerateRandomCatalogArticleNumber();
+    string GenerateRandomCatalogLabourNumber();
+    string GenerateRandomCatalogTextBlockNumber();
+    string GenerateRandomCatalogArticleTitle();
+    string GenerateRandomCatalogLabourTitle();
+    string GenerateRandomCatalogTextBlockTitle();
+    string GenerateRandomCatalogItemDescription();
+    int GenerateRandomCatalogItemQuantityAmount();
+    int GenerateRandomCatalogArticleQuantityUnit();
+    int GenerateRandomCatalogLabourQuantityUnit();
+    int GenerateRandomCatalogItemPrice();
 
     bool RandomBoolean(byte probabilityForTrue = 50);
   }
