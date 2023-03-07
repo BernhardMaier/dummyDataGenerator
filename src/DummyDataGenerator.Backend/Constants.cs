@@ -34,6 +34,38 @@
       "GmbH", "GbR", "AG", "GmbH & Co. KG"
     };
 
+    internal static readonly int[] TaxRates =
+    {
+      7, 19
+    };
+
+    internal static readonly string[] TitleForArticles =
+    {
+      "Filter", "Luftfilter", "Ölfilter", "Reifen", "Bremsscheibe", "Bremssattel", "Achse (Vorne)", "Achse (Hinten)",
+      "Motor", "Windschutzscheibe", "Hechscheibe", "Motorhaube", "Lenkrad", "Schraube", "Mutter", "Öl", "Auspuff"
+    };
+
+    internal static readonly string[] TitleForLabours =
+    {
+      "Reifenwechsel", "Luftfilterwechsel", "Ölfilterwechsel", "Bremsenprüfung", "Achsewechsel", "Motortausch",
+      "Bremsflüssigkeitwechsel", "Ölwechsel", "Vollwäsche", "Innenreinigung", "Scheibentönung", "Auspufftausch" 
+    };
+
+    internal static readonly string[] TitleForTextBlocks =
+    {
+      "Danke", "Vertrauen", "Garantie", "Nächste HU", "Nächste AU", "Service fällig"
+    };
+
+    internal static readonly int[] QuantityUnitsForArticles =
+    {
+      1, 5, 6, 7, 8
+    };
+
+    internal static readonly int[] QuantityUnitsForLabours =
+    {
+      2, 3, 4
+    };
+
     internal const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   }
 }

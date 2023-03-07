@@ -41,13 +41,13 @@ namespace DummyDataGenerator.Backend.Test
       }
 
       [Fact]
-      public void AllEnginesCodesAreAtMaximumTenCharsLong()
+      public void AllEnginesCodesAreAtMaximumSixtyCharsLong()
       {
         for (var i = 0; i < AmountOfEngineCodesToGenerate; i++)
           _generatedEngineCodes.Add(_dummyDataGenerator.GenerateRandomEngineCode());
         
         var engineCodesWithMoreThanTenChars = _generatedEngineCodes
-          .Where(engineCode => engineCode.Length > 10)
+          .Where(engineCode => engineCode.Length > 60)
           .ToList();
 
         foreach (var engineCode in engineCodesWithMoreThanTenChars)

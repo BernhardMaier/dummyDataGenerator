@@ -31,6 +31,7 @@ namespace DummyDataGenerator.Backend
     public int Seed { get; }
 
     public Guid GenerateRandomGuid() => Guid.NewGuid();
+    
     public int GenerateRandomGender() => RndInt(2);
     public string GenerateRandomDesignation() => RndElement(Constants.Designations);
     public string GenerateRandomFirstName() => _firstNameGenerator.Generate();
@@ -43,6 +44,7 @@ namespace DummyDataGenerator.Backend
     public string GenerateRandomPhone() => $"{RndIntString(5)} / {RndIntString(5)}";
     public string GenerateRandomEmail(string name) => $"{name}@{RndCharString(3, 5).ToLower()}.{RndElement(Constants.TopLevelDomains)}";
     public int GenerateRandomTimeForPaymentInDays() => RndInt(0, 30);
+    
     public string GenerateRandomManufacturer() => RndElement(Constants.Manufacturers);
     public string GenerateRandomModel() => RndElement(Constants.Models);
     public string GenerateRandomLicensePlate() => $"{RndCharString(1, 2)}-{RndCharString(1, 2)} {RndInt(999)}";
@@ -50,14 +52,38 @@ namespace DummyDataGenerator.Backend
     public string GenerateRandomHsn() => $"{RndIntString(4)}";
     public string GenerateRandomTsn() => $"{RndCharString(3)}{RndIntString(5)}";
     public string GenerateRandomKTypeNumber() => $"{RndIntString(5)}";
-    public string GenerateRandomEngineCode() => RndString(RndInt(5, 10));
+    public string GenerateRandomEngineCode() => RndString(RndInt(5, 60));
+    public string GenerateRandomEngineNumber() => RndIntString(5);
     public string GenerateRandomColorNumber() => RndString(RndInt(5, 10));
     public string GenerateRandomNextMainInspection() => RndDateInFuture(RndInt(0, 265));
     public string GenerateRandomInitialRegistration() => RndDateInPast(RndInt(0, 3650));
     public int GenerateRandomMileage() => RndInt(200000);
     
+    public int GenerateRandomTaxRateRate() => RndElement(Constants.TaxRates);
+    public string GenerateRandomTaxRateDescription() => RndText(RndInt(1, 10));
+    public string GenerateRandomTaxRateAccountNumber() => RndString(RndInt(1, 10));
+    public string GenerateRandomTaxRateTaxCode() => RndString(RndInt(1, 10));
+    
+    public string GenerateRandomCatalogArticleNumber() => $"{RndPrefix(1, 3)}{RndString(RndInt(1, 6))}";
+    public string GenerateRandomCatalogLabourNumber() => $"{RndPrefix(1, 3)}{RndString(RndInt(1, 6))}";
+    public string GenerateRandomCatalogTextBlockNumber() => $"{RndPrefix(1, 3)}{RndString(RndInt(1, 6))}";
+    public string GenerateRandomCatalogArticleTitle() => RndElement(Constants.TitleForArticles);
+    public string GenerateRandomCatalogLabourTitle() => RndElement(Constants.TitleForLabours);
+    public string GenerateRandomCatalogTextBlockTitle() => RndElement(Constants.TitleForTextBlocks);
+    public string GenerateRandomCatalogItemDescription() => RndText(RndInt(1, 255));
+    public int GenerateRandomCatalogItemQuantityAmount() => RndInt(1, 10);
+    public int GenerateRandomCatalogArticleQuantityUnit() => RndElement(Constants.QuantityUnitsForArticles);
+    public int GenerateRandomCatalogLabourQuantityUnit() => RndElement(Constants.QuantityUnitsForLabours);
+    public int GenerateRandomCatalogItemPrice() => RndInt(1, 100);
+    
     public string GenerateRandomNotice() => RndText(RndInt(20, 255));
     public bool RandomBoolean(byte probabilityForTrue = 50) => RndInt(100) >= 100 - probabilityForTrue;
+
+    private string RndPrefix(int min, int max) => RndPrefix(RndInt(min, max));
+    private string RndPrefix(int length) =>
+      RandomBoolean()
+        ? $"{RndCharString(length)}-"
+        : $"{RndIntString(length)}.";
 
     private string RndText(int maxLength)
     {
@@ -93,8 +119,8 @@ namespace DummyDataGenerator.Backend
 
     private static string RndDateInFuture(int daysToAdd) => $"GETDATE()+{daysToAdd}"; 
     private static string RndDateInPast(int daysToSubtract) => $"GETDATE()-{daysToSubtract}"; 
-    private char RndChar() => Constants.Chars[RndInt(Constants.Chars.Length-1)];
-    private string RndElement(IReadOnlyList<string> array) => array[RndInt(array.Count-1)];
+    private char RndChar() => RndElement(Constants.Chars.ToCharArray());
+    private T RndElement<T>(IReadOnlyList<T> array) => array[RndInt(array.Count-1)];
     private int RndInt(int max) => RndInt(0, max);
     private int RndInt(int min, int max) => _random.Next(min, max+1);
   }

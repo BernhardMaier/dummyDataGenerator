@@ -38,10 +38,14 @@ namespace DummyDataGenerator.Backend.Test
         var customers = Customer.CreateMany(count, ddg).ToArray();
         var vehicles = Vehicle.CreateMany(count, ddg).ToArray();
         var connections = Connection.CreateMany(customers, vehicles);
+        var taxRates = TaxRate.CreateMany(count, ddg).ToArray();
+        var articles = Article.CreateMany(count, ddg, taxRates.First().Id);
+        var labours = Labour.CreateMany(count, ddg, taxRates.First().Id);
+        var textBlocks = TextBlock.CreateMany(count, ddg);
         var ssc = new SqlScriptCreator(FilePath);
-        ssc.CreateScript(customers, vehicles, connections);
+        ssc.CreateScript(customers, vehicles, connections, taxRates, articles, labours, textBlocks);
 
-        ssc.Script.Should().HaveCount(290);
+        ssc.Script.Count.Should().Be(702);
       }
     }
   }

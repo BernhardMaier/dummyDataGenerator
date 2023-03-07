@@ -27,6 +27,7 @@ namespace DummyDataGenerator.Backend
       }
 
       if (ddg.RandomBoolean(25)) EngineCode = ddg.GenerateRandomEngineCode();
+      if (ddg.RandomBoolean(25)) EngineNumber = ddg.GenerateRandomEngineNumber();
       if (ddg.RandomBoolean(25)) ColorNumber = ddg.GenerateRandomColorNumber();
       if (ddg.RandomBoolean(25)) Notice = ddg.GenerateRandomNotice();
       
@@ -45,6 +46,7 @@ namespace DummyDataGenerator.Backend
     public string Tsn { get; } = string.Empty;
     public string KTypeNumber { get; } = string.Empty;
     public string EngineCode { get; } = string.Empty;
+    public string EngineNumber { get; } = string.Empty;
     public string ColorNumber { get; } = string.Empty;
     public string Notice { get; } = string.Empty;
     public string NextMainInspection { get; } = string.Empty;
@@ -65,6 +67,7 @@ namespace DummyDataGenerator.Backend
       sb.Append("[Tsn],");
       sb.Append("[KTypeNumber],");
       sb.Append("[EngineCode],");
+      sb.Append("[EngineNumber],");
       sb.Append("[ColorNumber],");
       sb.Append("[Notice],");
       sb.Append("[NextMainInspection],");
@@ -80,6 +83,7 @@ namespace DummyDataGenerator.Backend
       sb.Append($"{Tsn.ToNotNullableSqlString()},");
       sb.Append($"{KTypeNumber.ToNullableSqlString()},");
       sb.Append($"{EngineCode.ToNullableSqlString()},");
+      sb.Append($"{EngineNumber.ToNullableSqlString()},");
       sb.Append($"{ColorNumber.ToNullableSqlString()},");
       sb.Append($"{Notice.ToNullableSqlString()},");
       sb.Append($"{NextMainInspection.ToNullableSqlCommand()},");
