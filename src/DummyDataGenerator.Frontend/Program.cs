@@ -78,6 +78,8 @@ namespace DummyDataGenerator.Frontend
       {
         case "Y":
         case "y":
+        case "J":
+        case "j":
           return true;
         case "N":
         case "n":
@@ -113,12 +115,8 @@ namespace DummyDataGenerator.Frontend
       if (error is not null)
         Console.WriteLine(error);
 
-      Console.WriteLine("Press any key to exit.");
-      Console.ReadKey();
-
-      if (error is not null)
-        Environment.Exit(1);
-      Environment.Exit(0);
+      Console.WriteLine("Thank you for using the Dummy Data Generator.");
+      Environment.Exit(error is null ? 0 : 1);
     }
   }
 }

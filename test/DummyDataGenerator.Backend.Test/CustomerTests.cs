@@ -20,7 +20,7 @@ namespace DummyDataGenerator.Backend.Test
       {
         var ddg = new DummyDataGenerator(Seed);
         var customer = new Customer(ddg);
-        var script = customer.AsInsertScript();
+        var script = customer.AsSqlScript();
 
         script.Should().StartWith("INSERT INTO [dbo].[Customers] (");
         _testOutputHelper.WriteLine(script);
@@ -31,7 +31,7 @@ namespace DummyDataGenerator.Backend.Test
       {
         var ddg = new DummyDataGenerator(Seed);
         var customer = new Customer(ddg);
-        var script = customer.AsInsertScript();
+        var script = customer.AsSqlScript();
 
         script.Should().EndWith(")");
         script.Should().NotEndWith(",)");

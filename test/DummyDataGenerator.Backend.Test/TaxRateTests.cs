@@ -20,7 +20,7 @@ namespace DummyDataGenerator.Backend.Test
       {
         var ddg = new DummyDataGenerator(Seed);
         var taxRate = new TaxRate(ddg);
-        var script = taxRate.AsInsertScript();
+        var script = taxRate.AsSqlScript();
 
         script.Should().StartWith("INSERT INTO [dbo].[TaxRates] (");
         _testOutputHelper.WriteLine(script);
@@ -31,7 +31,7 @@ namespace DummyDataGenerator.Backend.Test
       {
         var ddg = new DummyDataGenerator(Seed);
         var taxRate = new TaxRate(ddg);
-        var script = taxRate.AsInsertScript();
+        var script = taxRate.AsSqlScript();
 
         script.Should().EndWith(")");
         script.Should().NotEndWith(",)");

@@ -23,7 +23,7 @@ public class TaxRate : ISqlEntity
   public string AccountNumber { get; } = string.Empty;
   public string TaxCode { get; } = string.Empty;
   
-  public string AsInsertScript()
+  public string AsSqlScript()
   {
     var sb = new StringBuilder();
 

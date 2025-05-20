@@ -33,7 +33,7 @@ public class Article : ISqlEntity
   public decimal NetSellingPrice { get; }
   public Guid TaxRateId { get; }
   
-  public string AsInsertScript()
+  public string AsSqlScript()
   {
     var sb = new StringBuilder();
 

@@ -21,7 +21,7 @@ public class TextBlock : ISqlEntity
   public string Title { get; }
   public string Description { get; } = string.Empty;
   
-  public string AsInsertScript()
+  public string AsSqlScript()
   {
     var sb = new StringBuilder();
 

@@ -44,6 +44,8 @@ namespace DummyDataGenerator.Backend
       TimeForPaymentInDays = ddg.GenerateRandomTimeForPaymentInDays();
 
       if (ddg.RandomBoolean(25)) Notice = ddg.GenerateRandomNotice();
+      if (ddg.RandomBoolean(25)) ImportedCustomerNumber = ddg.GenerateRandomImportedCustomerNumber();
+      if (ddg.RandomBoolean(25)) DebitorNumber = ddg.GenerateRandomDebitorNumber();
     }
 
     public Guid Id { get; }
@@ -60,8 +62,11 @@ namespace DummyDataGenerator.Backend
     public string Email { get; } = string.Empty;
     public int TimeForPaymentInDays { get; }
     public string Notice { get; } = string.Empty;
-
-    public string AsInsertScript()
+    public string ImportedCustomerNumber { get; } = string.Empty;
+    public string DebitorNumber { get; } = string.Empty;
+    
+    
+    public string AsSqlScript()
     {
       var sb = new StringBuilder();
 
@@ -79,7 +84,9 @@ namespace DummyDataGenerator.Backend
       sb.Append("[Phone],");
       sb.Append("[Email],");
       sb.Append("[TimeForPaymentInDays],");
-      sb.Append("[Notice])");
+      sb.Append("[Notice],");
+      sb.Append("[ImportedCustomerNumber],");
+      sb.Append("[DebitorNumber])");
       sb.Append(" VALUES ");
       sb.Append($"('{Id}',");
       sb.Append($"{Gender},");
@@ -94,7 +101,9 @@ namespace DummyDataGenerator.Backend
       sb.Append($"{Phone.ToNullableSqlString()},");
       sb.Append($"{Email.ToNullableSqlString()},");
       sb.Append($"{TimeForPaymentInDays},");
-      sb.Append($"{Notice.ToNullableSqlString()})");
+      sb.Append($"{Notice.ToNotNullableSqlString()},");
+      sb.Append($"{ImportedCustomerNumber.ToNullableSqlString()},");
+      sb.Append($"{DebitorNumber.ToNullableSqlString()})");
 
       return sb.ToString();
     }

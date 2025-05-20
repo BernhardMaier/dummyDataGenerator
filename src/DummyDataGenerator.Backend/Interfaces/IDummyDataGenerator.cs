@@ -18,6 +18,8 @@ namespace DummyDataGenerator.Backend.Interfaces
     string GenerateRandomPhone();
     string GenerateRandomEmail(string name);
     int GenerateRandomTimeForPaymentInDays();
+    string GenerateRandomImportedCustomerNumber();
+    string GenerateRandomDebitorNumber();
 
     string GenerateRandomManufacturer();
     string GenerateRandomModel();

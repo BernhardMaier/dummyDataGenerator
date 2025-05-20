@@ -53,7 +53,7 @@ namespace DummyDataGenerator.Backend
     public string InitialRegistration { get; } = string.Empty;
     public int Mileage { get; }
 
-    public string AsInsertScript()
+    public string AsSqlScript()
     {
       var sb = new StringBuilder();
 
@@ -82,10 +82,10 @@ namespace DummyDataGenerator.Backend
       sb.Append($"{Hsn.ToNotNullableSqlString()},");
       sb.Append($"{Tsn.ToNotNullableSqlString()},");
       sb.Append($"{KTypeNumber.ToNullableSqlString()},");
-      sb.Append($"{EngineCode.ToNullableSqlString()},");
-      sb.Append($"{EngineNumber.ToNullableSqlString()},");
-      sb.Append($"{ColorNumber.ToNullableSqlString()},");
-      sb.Append($"{Notice.ToNullableSqlString()},");
+      sb.Append($"{EngineCode.ToNotNullableSqlString()},");
+      sb.Append($"{EngineNumber.ToNotNullableSqlString()},");
+      sb.Append($"{ColorNumber.ToNotNullableSqlString()},");
+      sb.Append($"{Notice.ToNotNullableSqlString()},");
       sb.Append($"{NextMainInspection.ToNullableSqlCommand()},");
       sb.Append($"{InitialRegistration.ToNullableSqlCommand()},");
       sb.Append($"{Mileage})");

@@ -20,7 +20,7 @@ namespace DummyDataGenerator.Backend.Test
       {
         var ddg = new DummyDataGenerator(Seed);
         var textBlock = new TextBlock(ddg);
-        var script = textBlock.AsInsertScript();
+        var script = textBlock.AsSqlScript();
 
         script.Should().StartWith("INSERT INTO [dbo].[CatalogTextBlocks] (");
         _testOutputHelper.WriteLine(script);
@@ -31,7 +31,7 @@ namespace DummyDataGenerator.Backend.Test
       {
         var ddg = new DummyDataGenerator(Seed);
         var textBlock = new TextBlock(ddg);
-        var script = textBlock.AsInsertScript();
+        var script = textBlock.AsSqlScript();
 
         script.Should().EndWith(")");
         script.Should().NotEndWith(",)");

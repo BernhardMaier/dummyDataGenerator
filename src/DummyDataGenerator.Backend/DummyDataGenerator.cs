@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using DummyDataGenerator.Backend.Interfaces;
 using NLipsum.Core;
 using RandomDataGenerator.FieldOptions;
@@ -39,19 +40,21 @@ namespace DummyDataGenerator.Backend
     public string GenerateRandomOrganizationName() => $"{_lastNameGenerator.Generate().Replace("'", "")} {RndElement(Constants.CompanyTypes)}";
     public string GenerateRandomStreet() => RndElement(Constants.Streets);
     public string GenerateRandomHouseNumber() => RndInt(100).ToString();
-    public string GenerateRandomZip() => $"{RndIntString(5)}";
+    public string GenerateRandomZip() => RndIntString(5);
     public string GenerateRandomCity() => _cityGenerator.Generate();
     public string GenerateRandomPhone() => $"{RndIntString(5)} / {RndIntString(5)}";
     public string GenerateRandomEmail(string name) => $"{name}@{RndCharString(3, 5).ToLower()}.{RndElement(Constants.TopLevelDomains)}";
     public int GenerateRandomTimeForPaymentInDays() => RndInt(0, 30);
-    
+    public string GenerateRandomImportedCustomerNumber() => RndIntString(RandomBoolean(75) ? RndInt(5,15) : RndInt(15,255));
+    public string GenerateRandomDebitorNumber() => RndIntString(RandomBoolean(75) ? RndInt(5,15) : RndInt(15,255));
+
     public string GenerateRandomManufacturer() => RndElement(Constants.Manufacturers);
     public string GenerateRandomModel() => RndElement(Constants.Models);
     public string GenerateRandomLicensePlate() => $"{RndCharString(1, 2)}-{RndCharString(1, 2)} {RndInt(999)}";
     public string GenerateRandomVin() => _vinGenerator.Generate();
-    public string GenerateRandomHsn() => $"{RndIntString(4)}";
-    public string GenerateRandomTsn() => $"{RndCharString(3)}{RndIntString(5)}";
-    public string GenerateRandomKTypeNumber() => $"{RndIntString(5)}";
+    public string GenerateRandomHsn() => RndIntString(4);
+    public string GenerateRandomTsn() => RndString(3);
+    public string GenerateRandomKTypeNumber() => RndIntString(5);
     public string GenerateRandomEngineCode() => RndString(RndInt(5, 60));
     public string GenerateRandomEngineNumber() => RndIntString(5);
     public string GenerateRandomColorNumber() => RndString(RndInt(5, 10));
@@ -94,27 +97,27 @@ namespace DummyDataGenerator.Backend
     
     private string RndString(int length)
     {
-      var str = string.Empty;
+      var sb = new StringBuilder(string.Empty);
       for (var i = 0; i < length; i++)
-        str += RandomBoolean() ? RndChar() : RndInt(9).ToString();
-      return str;
+        sb.Append(RandomBoolean() ? RndChar() : RndInt(9).ToString());
+      return sb.ToString();
     }
 
     private string RndCharString(int min, int max) => RndCharString(RndInt(min, max));
     private string RndCharString(int length)
     {
-      var str = string.Empty;
+      var sb = new StringBuilder(string.Empty);
       for (var i = 0; i < length; i++)
-        str += RndChar();
-      return str;
+        sb.Append(RndChar());
+      return sb.ToString();
     }
 
     private string RndIntString(int length)
     {
-      var str = string.Empty;
+      var sb = new StringBuilder(string.Empty);
       for (var i = 0; i < length; i++)
-        str += RndInt(9);
-      return str;
+        sb.Append(RndInt(9));
+      return sb.ToString();
     }
 
     private static string RndDateInFuture(int daysToAdd) => $"GETDATE()+{daysToAdd}"; 

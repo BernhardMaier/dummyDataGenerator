@@ -17,16 +17,12 @@ namespace DummyDataGenerator.Backend
     private Customer Customer { get; }
     private Vehicle Vehicle { get; }
 
-    public string AsInsertScript()
+    public string AsSqlScript()
     {
       var sb = new StringBuilder();
 
-      sb.Append("INSERT INTO [dbo].[CustomerVehicleConnections] ");
-      sb.Append("([CustomerId],");
-      sb.Append("[VehicleId])");
-      sb.Append(" VALUES ");
-      sb.Append($"('{Customer.Id}',");
-      sb.Append($"'{Vehicle.Id}')");
+      sb.Append($"UPDATE [dbo].[Vehicles] SET [OwnerId] = '{Customer.Id}' ");
+      sb.Append($"FROM [dbo].[Vehicles] WHERE [Id] = '{Vehicle.Id}'");
 
       return sb.ToString().Replace("''", "NULL");
     }
@@ -41,7 +37,7 @@ namespace DummyDataGenerator.Backend
         {
           case 0:
           case 1:
-            continue;
+            break;
           case 2:
             connections.Add(new Connection(customers[i], vehicles[i - 1]));
             break;

@@ -29,7 +29,7 @@ public class Labour : ISqlEntity
   public decimal NetPrice { get; }
   public Guid TaxRateId { get; }
   
-  public string AsInsertScript()
+  public string AsSqlScript()
   {
     var sb = new StringBuilder();
 

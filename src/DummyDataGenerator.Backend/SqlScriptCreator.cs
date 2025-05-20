@@ -77,7 +77,7 @@ namespace DummyDataGenerator.Backend
       
       Script.Add($"-- {name} ({list.Count()})");
       foreach (var element in list)
-        Script.Add(element.AsInsertScript());
+        Script.Add(element.AsSqlScript());
       Script.Add(string.Empty);
     }
 

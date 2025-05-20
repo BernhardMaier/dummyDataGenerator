@@ -17,9 +17,9 @@ namespace DummyDataGenerator.Backend.Test
         var customer = new Customer(ddg);
         var vehicle = new Vehicle(ddg);
         var connection = new Connection(customer, vehicle);
-        var script = connection.AsInsertScript();
+        var script = connection.AsSqlScript();
 
-        script.Should().StartWith("INSERT INTO [dbo].[CustomerVehicleConnections] ");
+        script.Should().StartWith("UPDATE [dbo].[Vehicles] SET [OwnerId] = '");
       }
       
       [Fact]
@@ -29,10 +29,11 @@ namespace DummyDataGenerator.Backend.Test
         var customer = new Customer(ddg);
         var vehicle = new Vehicle(ddg);
         var connection = new Connection(customer, vehicle);
-        var script = connection.AsInsertScript();
+        var script = connection.AsSqlScript();
 
-        script.Should().EndWith(")");
-        script.Should().NotEndWith(",)");
+        script.Should().EndWith("'");
+        script.Should().NotEndWith(",");
+        script.Should().NotEndWith(")");
       }
     }
 

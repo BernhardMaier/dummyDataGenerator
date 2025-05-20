@@ -2,6 +2,6 @@
 {
   public interface ISqlEntity
   {
-    string AsInsertScript();
+    string AsSqlScript();
   }
 }
